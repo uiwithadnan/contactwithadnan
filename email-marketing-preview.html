@@ -1,0 +1,1425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dalmore - Email Marketing</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://unpkg.com/recharts@2.5.0/dist/Recharts.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0A0E1A;
+        }
+        input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState } = React;
+        const { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, LineChart, Line, PieChart, Pie, Cell } = Recharts;
+
+        const EmailMarketing = () => {
+          const [activeTab, setActiveTab] = useState('overview');
+          const [activeSubTab, setActiveSubTab] = useState('analytic');
+          const [selectedList, setSelectedList] = useState(null);
+          const [campaignStep, setCampaignStep] = useState(1);
+
+          // Mock data
+          const trafficData = [
+            { month: 'Jan', emails: 450 },
+            { month: 'Feb', emails: 780 },
+            { month: 'March', emails: 1200 },
+            { month: 'April', emails: 1450 },
+            { month: 'May', emails: 1300 },
+            { month: 'June', emails: 1400 },
+            { month: 'July', emails: 1500 },
+            { month: 'August', emails: 1600 },
+            { month: 'September', emails: 1700 },
+            { month: 'October', emails: 1650 },
+            { month: 'November', emails: 1800 },
+            { month: 'December', emails: 450 },
+          ];
+
+          const openRateData = [
+            { month: 'Jan', rate: 25 },
+            { month: 'Feb', rate: 28 },
+            { month: 'March', rate: 32 },
+            { month: 'April', rate: 35 },
+            { month: 'May', rate: 33 },
+            { month: 'June', rate: 36 },
+            { month: 'July', rate: 38 },
+            { month: 'August', rate: 40 },
+            { month: 'September', rate: 39 },
+            { month: 'October', rate: 41 },
+            { month: 'November', rate: 42 },
+            { month: 'December', rate: 38 },
+          ];
+
+          const engagementData = [
+            { name: 'Opened', value: 4200, color: '#3B82F6' },
+            { name: 'Clicked', value: 1800, color: '#10B981' },
+            { name: 'Bounced', value: 450, color: '#EF4444' },
+            { name: 'Unsubscribed', value: 150, color: '#F59E0B' },
+          ];
+
+          const recentCampaigns = [
+            { id: 'C12345', name: 'Q4 Investment Update', recipients: 1250, sent: '12/15/2024', openRate: '42%', clickRate: '18%', status: 'Completed', conversions: 23 },
+            { id: 'C12346', name: 'New Fund Launch', recipients: 2100, sent: '12/10/2024', openRate: '38%', clickRate: '15%', status: 'Completed', conversions: 31 },
+            { id: 'C12347', name: 'Holiday Greetings', recipients: 3400, sent: '12/22/2024', openRate: '55%', clickRate: '8%', status: 'Completed', conversions: 12 },
+            { id: 'C12348', name: 'Portfolio Performance', recipients: 1850, sent: '01/05/2025', openRate: '45%', clickRate: '22%', status: 'Completed', conversions: 41 },
+            { id: 'C12349', name: 'Investor Survey', recipients: 980, sent: '01/12/2025', openRate: '32%', clickRate: '12%', status: 'Completed', conversions: 8 },
+            { id: 'C12350', name: 'Market Insights', recipients: 2200, sent: '01/20/2025', openRate: '48%', clickRate: '25%', status: 'Scheduled', conversions: 0 },
+          ];
+
+          const emailLists = [
+            { id: 'L001', name: 'All Investors', contacts: 3450, uploaded: '11/15/2024', status: 'Validated', errors: 0, duplicates: 12 },
+            { id: 'L002', name: 'Accredited Investors', contacts: 1820, uploaded: '12/01/2024', status: 'Validated', errors: 3, duplicates: 5 },
+            { id: 'L003', name: 'High-Net-Worth', contacts: 620, uploaded: '12/10/2024', status: 'Validated', errors: 0, duplicates: 2 },
+            { id: 'L004', name: 'Institutional Investors', contacts: 285, uploaded: '12/20/2024', status: 'Processing', errors: 1, duplicates: 0 },
+            { id: 'L005', name: 'Recent Conversions', contacts: 142, uploaded: '01/05/2025', status: 'Validated', errors: 0, duplicates: 1 },
+          ];
+
+          const templates = [
+            { id: 'T001', name: 'Investment Update', category: 'Newsletter', preview: 'Modern layout with charts' },
+            { id: 'T002', name: 'Fund Launch', category: 'Announcement', preview: 'Bold header with CTA' },
+            { id: 'T003', name: 'Performance Report', category: 'Report', preview: 'Data-focused design' },
+            { id: 'T004', name: 'Event Invitation', category: 'Event', preview: 'Elegant invitation style' },
+          ];
+
+          return (
+            <div style={{ 
+              minHeight: '100vh', 
+              backgroundColor: '#0A0E1A',
+              color: '#E5E7EB',
+              fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
+            }}>
+              {/* Header */}
+              <div style={{ 
+                padding: '24px 32px',
+                borderBottom: '1px solid #1F2937',
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center'
+              }}>
+                <div>
+                  <h1 style={{ 
+                    fontSize: '28px', 
+                    fontWeight: '600', 
+                    margin: '0 0 8px 0',
+                    color: '#FFFFFF'
+                  }}>
+                    Email Marketing
+                  </h1>
+                  <p style={{ 
+                    margin: 0, 
+                    color: '#9CA3AF',
+                    fontSize: '14px'
+                  }}>
+                    Engage with your investors through targeted email campaigns
+                  </p>
+                </div>
+                <button style={{
+                  padding: '10px 20px',
+                  backgroundColor: '#3B82F6',
+                  color: 'white',
+                  border: 'none',
+                  borderRadius: '8px',
+                  cursor: 'pointer',
+                  fontSize: '14px',
+                  fontWeight: '500',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '8px'
+                }}>
+                  <span>+</span>
+                  Create Campaign
+                </button>
+              </div>
+
+              {/* Main Tabs */}
+              <div style={{ 
+                padding: '0 32px',
+                borderBottom: '1px solid #1F2937'
+              }}>
+                <div style={{ display: 'flex', gap: '32px' }}>
+                  {['overview', 'email-lists', 'campaigns', 'settings'].map(tab => (
+                    <button
+                      key={tab}
+                      onClick={() => setActiveTab(tab)}
+                      style={{
+                        padding: '16px 0',
+                        background: 'none',
+                        border: 'none',
+                        color: activeTab === tab ? '#3B82F6' : '#9CA3AF',
+                        cursor: 'pointer',
+                        fontSize: '14px',
+                        fontWeight: '500',
+                        borderBottom: activeTab === tab ? '2px solid #3B82F6' : '2px solid transparent',
+                        textTransform: 'capitalize'
+                      }}
+                    >
+                      {tab.replace('-', ' ')}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Content Area */}
+              <div style={{ padding: '32px' }}>
+                
+                {/* OVERVIEW TAB */}
+                {activeTab === 'overview' && (
+                  <>
+                    {/* Sub Tabs */}
+                    <div style={{ display: 'flex', gap: '24px', marginBottom: '24px' }}>
+                      {['analytic', 'email-list', 'campaign', 'settings'].map(subTab => (
+                        <button
+                          key={subTab}
+                          onClick={() => setActiveSubTab(subTab)}
+                          style={{
+                            padding: '8px 16px',
+                            background: activeSubTab === subTab ? '#1F2937' : 'transparent',
+                            border: 'none',
+                            color: activeSubTab === subTab ? '#3B82F6' : '#9CA3AF',
+                            cursor: 'pointer',
+                            fontSize: '13px',
+                            fontWeight: '500',
+                            borderRadius: '6px',
+                            textTransform: 'capitalize'
+                          }}
+                        >
+                          {subTab.replace('-', ' ')}
+                        </button>
+                      ))}
+                    </div>
+
+                    {/* Metrics Cards */}
+                    <div style={{ 
+                      display: 'grid', 
+                      gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
+                      gap: '20px',
+                      marginBottom: '32px'
+                    }}>
+                      {[
+                        { label: 'Total Emails Uploaded', value: '12,847', change: '+32% this month', up: true },
+                        { label: 'Total Emails Sent', value: '8,420', change: '+18% from last period', up: true },
+                        { label: 'Avg. Open Rate', value: '42%', change: '+5% from last period', up: true },
+                        { label: 'Avg. Click Rate', value: '18%', change: '+2% from last period', up: true },
+                        { label: 'Total Conversions', value: '342', change: '+8.3% from last period', up: true },
+                        { label: 'Active Campaigns', value: '12', change: '3 scheduled', up: false }
+                      ].map((metric, idx) => (
+                        <div key={idx} style={{
+                          background: '#111827',
+                          border: '1px solid #1F2937',
+                          borderRadius: '12px',
+                          padding: '20px'
+                        }}>
+                          <div style={{ 
+                            fontSize: '13px', 
+                            color: '#9CA3AF',
+                            marginBottom: '8px'
+                          }}>
+                            {metric.label}
+                          </div>
+                          <div style={{ 
+                            fontSize: '28px', 
+                            fontWeight: '600',
+                            color: '#FFFFFF',
+                            marginBottom: '8px'
+                          }}>
+                            {metric.value}
+                          </div>
+                          <div style={{ 
+                            fontSize: '12px',
+                            color: metric.up ? '#10B981' : '#9CA3AF',
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: '4px'
+                          }}>
+                            {metric.up && <span>↑</span>}
+                            {metric.change}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Charts Row */}
+                    <div style={{ 
+                      display: 'grid',
+                      gridTemplateColumns: '2fr 1fr',
+                      gap: '20px',
+                      marginBottom: '32px'
+                    }}>
+                      {/* Email Traffic Chart */}
+                      <div style={{
+                        background: '#111827',
+                        border: '1px solid #1F2937',
+                        borderRadius: '12px',
+                        padding: '24px'
+                      }}>
+                        <h3 style={{ 
+                          fontSize: '16px',
+                          fontWeight: '600',
+                          margin: '0 0 24px 0',
+                          color: '#FFFFFF'
+                        }}>
+                          Email Traffic Over Time
+                        </h3>
+                        <ResponsiveContainer width="100%" height={300}>
+                          <BarChart data={trafficData}>
+                            <CartesianGrid strokeDasharray="3 3" stroke="#1F2937" />
+                            <XAxis dataKey="month" stroke="#9CA3AF" style={{ fontSize: '12px' }} />
+                            <YAxis stroke="#9CA3AF" style={{ fontSize: '12px' }} />
+                            <Tooltip 
+                              contentStyle={{ 
+                                backgroundColor: '#1F2937', 
+                                border: '1px solid #374151',
+                                borderRadius: '8px',
+                                color: '#E5E7EB'
+                              }} 
+                            />
+                            <Bar dataKey="emails" fill="#3B82F6" radius={[8, 8, 0, 0]} />
+                          </BarChart>
+                        </ResponsiveContainer>
+                      </div>
+
+                      {/* Engagement Breakdown */}
+                      <div style={{
+                        background: '#111827',
+                        border: '1px solid #1F2937',
+                        borderRadius: '12px',
+                        padding: '24px'
+                      }}>
+                        <h3 style={{ 
+                          fontSize: '16px',
+                          fontWeight: '600',
+                          margin: '0 0 24px 0',
+                          color: '#FFFFFF'
+                        }}>
+                          Engagement Breakdown
+                        </h3>
+                        <ResponsiveContainer width="100%" height={300}>
+                          <PieChart>
+                            <Pie
+                              data={engagementData}
+                              cx="50%"
+                              cy="50%"
+                              innerRadius={60}
+                              outerRadius={80}
+                              paddingAngle={5}
+                              dataKey="value"
+                            >
+                              {engagementData.map((entry, index) => (
+                                <Cell key={`cell-${index}`} fill={entry.color} />
+                              ))}
+                            </Pie>
+                            <Tooltip 
+                              contentStyle={{ 
+                                backgroundColor: '#1F2937', 
+                                border: '1px solid #374151',
+                                borderRadius: '8px',
+                                color: '#E5E7EB'
+                              }} 
+                            />
+                          </PieChart>
+                        </ResponsiveContainer>
+                        <div style={{ marginTop: '16px' }}>
+                          {engagementData.map((item, idx) => (
+                            <div key={idx} style={{ 
+                              display: 'flex', 
+                              justifyContent: 'space-between',
+                              alignItems: 'center',
+                              padding: '8px 0',
+                              borderBottom: idx < engagementData.length - 1 ? '1px solid #1F2937' : 'none'
+                            }}>
+                              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                                <div style={{ 
+                                  width: '12px', 
+                                  height: '12px', 
+                                  borderRadius: '3px',
+                                  backgroundColor: item.color 
+                                }} />
+                                <span style={{ fontSize: '13px', color: '#9CA3AF' }}>{item.name}</span>
+                              </div>
+                              <span style={{ fontSize: '14px', fontWeight: '500', color: '#FFFFFF' }}>
+                                {item.value.toLocaleString()}
+                              </span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Open Rate Trend */}
+                    <div style={{
+                      background: '#111827',
+                      border: '1px solid #1F2937',
+                      borderRadius: '12px',
+                      padding: '24px',
+                      marginBottom: '32px'
+                    }}>
+                      <h3 style={{ 
+                        fontSize: '16px',
+                        fontWeight: '600',
+                        margin: '0 0 24px 0',
+                        color: '#FFFFFF'
+                      }}>
+                        Open Rate Trend
+                      </h3>
+                      <ResponsiveContainer width="100%" height={250}>
+                        <LineChart data={openRateData}>
+                          <CartesianGrid strokeDasharray="3 3" stroke="#1F2937" />
+                          <XAxis dataKey="month" stroke="#9CA3AF" style={{ fontSize: '12px' }} />
+                          <YAxis stroke="#9CA3AF" style={{ fontSize: '12px' }} />
+                          <Tooltip 
+                            contentStyle={{ 
+                              backgroundColor: '#1F2937', 
+                              border: '1px solid #374151',
+                              borderRadius: '8px',
+                              color: '#E5E7EB'
+                            }} 
+                          />
+                          <Line 
+                            type="monotone" 
+                            dataKey="rate" 
+                            stroke="#10B981" 
+                            strokeWidth={2}
+                            dot={{ fill: '#10B981', r: 4 }}
+                          />
+                        </LineChart>
+                      </ResponsiveContainer>
+                    </div>
+
+                    {/* Recent Campaigns Table */}
+                    <div style={{
+                      background: '#111827',
+                      border: '1px solid #1F2937',
+                      borderRadius: '12px',
+                      padding: '24px'
+                    }}>
+                      <div style={{ 
+                        display: 'flex', 
+                        justifyContent: 'space-between',
+                        alignItems: 'center',
+                        marginBottom: '20px'
+                      }}>
+                        <h3 style={{ 
+                          fontSize: '16px',
+                          fontWeight: '600',
+                          margin: 0,
+                          color: '#FFFFFF'
+                        }}>
+                          Recent Campaigns
+                        </h3>
+                        <div style={{ display: 'flex', gap: '12px' }}>
+                          <input 
+                            type="text"
+                            placeholder="Search by name"
+                            style={{
+                              padding: '8px 12px',
+                              background: '#0A0E1A',
+                              border: '1px solid #1F2937',
+                              borderRadius: '6px',
+                              color: '#E5E7EB',
+                              fontSize: '13px',
+                              width: '200px'
+                            }}
+                          />
+                          <button style={{
+                            padding: '8px 16px',
+                            background: '#1F2937',
+                            border: '1px solid #374151',
+                            borderRadius: '6px',
+                            color: '#9CA3AF',
+                            cursor: 'pointer',
+                            fontSize: '13px'
+                          }}>
+                            Filter
+                          </button>
+                        </div>
+                      </div>
+
+                      <div style={{ overflowX: 'auto' }}>
+                        <table style={{ 
+                          width: '100%', 
+                          borderCollapse: 'collapse'
+                        }}>
+                          <thead>
+                            <tr style={{ borderBottom: '1px solid #1F2937' }}>
+                              <th style={{ padding: '12px', textAlign: 'left', fontSize: '12px', fontWeight: '500', color: '#9CA3AF' }}>Campaign ID</th>
+                              <th style={{ padding: '12px', textAlign: 'left', fontSize: '12px', fontWeight: '500', color: '#9CA3AF' }}>Campaign Name</th>
+                              <th style={{ padding: '12px', textAlign: 'left', fontSize: '12px', fontWeight: '500', color: '#9CA3AF' }}>Recipients</th>
+                              <th style={{ padding: '12px', textAlign: 'left', fontSize: '12px', fontWeight: '500', color: '#9CA3AF' }}>Date Sent</th>
+                              <th style={{ padding: '12px', textAlign: 'left', fontSize: '12px', fontWeight: '500', color: '#9CA3AF' }}>Open Rate</th>
+                              <th style={{ padding: '12px', textAlign: 'left', fontSize: '12px', fontWeight: '500', color: '#9CA3AF' }}>Click Rate</th>
+                              <th style={{ padding: '12px', textAlign: 'left', fontSize: '12px', fontWeight: '500', color: '#9CA3AF' }}>Conversions</th>
+                              <th style={{ padding: '12px', textAlign: 'left', fontSize: '12px', fontWeight: '500', color: '#9CA3AF' }}>Status</th>
+                              <th style={{ padding: '12px', textAlign: 'left', fontSize: '12px', fontWeight: '500', color: '#9CA3AF' }}>Action</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {recentCampaigns.map((campaign, idx) => (
+                              <tr key={campaign.id} style={{ 
+                                borderBottom: idx < recentCampaigns.length - 1 ? '1px solid #1F2937' : 'none'
+                              }}>
+                                <td style={{ padding: '16px 12px', fontSize: '13px', color: '#9CA3AF' }}>{campaign.id}</td>
+                                <td style={{ padding: '16px 12px', fontSize: '13px', color: '#E5E7EB', fontWeight: '500' }}>{campaign.name}</td>
+                                <td style={{ padding: '16px 12px', fontSize: '13px', color: '#E5E7EB' }}>{campaign.recipients.toLocaleString()}</td>
+                                <td style={{ padding: '16px 12px', fontSize: '13px', color: '#9CA3AF' }}>{campaign.sent}</td>
+                                <td style={{ padding: '16px 12px', fontSize: '13px', color: '#10B981', fontWeight: '500' }}>{campaign.openRate}</td>
+                                <td style={{ padding: '16px 12px', fontSize: '13px', color: '#3B82F6', fontWeight: '500' }}>{campaign.clickRate}</td>
+                                <td style={{ padding: '16px 12px', fontSize: '13px', color: '#E5E7EB' }}>{campaign.conversions}</td>
+                                <td style={{ padding: '16px 12px' }}>
+                                  <span style={{
+                                    padding: '4px 12px',
+                                    borderRadius: '12px',
+                                    fontSize: '12px',
+                                    fontWeight: '500',
+                                    backgroundColor: campaign.status === 'Completed' ? '#10B98120' : '#F59E0B20',
+                                    color: campaign.status === 'Completed' ? '#10B981' : '#F59E0B'
+                                  }}>
+                                    {campaign.status}
+                                  </span>
+                                </td>
+                                <td style={{ padding: '16px 12px' }}>
+                                  <button style={{
+                                    padding: '6px 12px',
+                                    background: 'transparent',
+                                    border: '1px solid #374151',
+                                    borderRadius: '6px',
+                                    color: '#9CA3AF',
+                                    cursor: 'pointer',
+                                    fontSize: '12px'
+                                  }}>
+                                    👁️ View
+                                  </button>
+                                </td>
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
+                      </div>
+
+                      {/* Pagination */}
+                      <div style={{ 
+                        display: 'flex', 
+                        justifyContent: 'space-between',
+                        alignItems: 'center',
+                        marginTop: '20px',
+                        fontSize: '13px',
+                        color: '#9CA3AF'
+                      }}>
+                        <span>Showing 1-6 of 150</span>
+                        <div style={{ display: 'flex', gap: '8px' }}>
+                          {[1, 2, 3, '...', 50].map((page, idx) => (
+                            <button key={idx} style={{
+                              padding: '6px 12px',
+                              background: page === 1 ? '#3B82F6' : '#1F2937',
+                              border: 'none',
+                              borderRadius: '6px',
+                              color: page === 1 ? '#FFFFFF' : '#9CA3AF',
+                              cursor: 'pointer',
+                              fontSize: '13px'
+                            }}>
+                              {page}
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  </>
+                )}
+
+                {/* EMAIL LISTS TAB */}
+                {activeTab === 'email-lists' && (
+                  <>
+                    {/* Upload Section */}
+                    <div style={{
+                      background: '#111827',
+                      border: '2px dashed #374151',
+                      borderRadius: '12px',
+                      padding: '48px',
+                      marginBottom: '32px',
+                      textAlign: 'center'
+                    }}>
+                      <div style={{ fontSize: '48px', marginBottom: '16px' }}>📧</div>
+                      <h3 style={{ 
+                        fontSize: '18px',
+                        fontWeight: '600',
+                        margin: '0 0 8px 0',
+                        color: '#FFFFFF'
+                      }}>
+                        Upload Email List
+                      </h3>
+                      <p style={{ 
+                        margin: '0 0 20px 0',
+                        color: '#9CA3AF',
+                        fontSize: '14px'
+                      }}>
+                        Drag and drop your CSV file here or click to browse
+                      </p>
+                      <button style={{
+                        padding: '10px 24px',
+                        backgroundColor: '#3B82F6',
+                        color: 'white',
+                        border: 'none',
+                        borderRadius: '8px',
+                        cursor: 'pointer',
+                        fontSize: '14px',
+                        fontWeight: '500'
+                      }}>
+                        Choose File
+                      </button>
+                      <p style={{ 
+                        margin: '16px 0 0 0',
+                        color: '#6B7280',
+                        fontSize: '12px'
+                      }}>
+                        Supported format: CSV (max 10MB) • Must include email column
+                      </p>
+                    </div>
+
+                    {/* Email Lists */}
+                    <div style={{
+                      background: '#111827',
+                      border: '1px solid #1F2937',
+                      borderRadius: '12px',
+                      padding: '24px'
+                    }}>
+                      <h3 style={{ 
+                        fontSize: '16px',
+                        fontWeight: '600',
+                        margin: '0 0 20px 0',
+                        color: '#FFFFFF'
+                      }}>
+                        Uploaded Email Lists
+                      </h3>
+
+                      <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                        {emailLists.map((list) => (
+                          <div key={list.id} style={{
+                            background: '#0A0E1A',
+                            border: '1px solid #1F2937',
+                            borderRadius: '8px',
+                            padding: '20px',
+                            display: 'flex',
+                            justifyContent: 'space-between',
+                            alignItems: 'center'
+                          }}>
+                            <div style={{ flex: 1 }}>
+                              <div style={{ 
+                                fontSize: '15px',
+                                fontWeight: '500',
+                                color: '#FFFFFF',
+                                marginBottom: '8px'
+                              }}>
+                                {list.name}
+                              </div>
+                              <div style={{ 
+                                fontSize: '13px',
+                                color: '#9CA3AF',
+                                display: 'flex',
+                                gap: '20px'
+                              }}>
+                                <span>📊 {list.contacts.toLocaleString()} contacts</span>
+                                <span>📅 Uploaded: {list.uploaded}</span>
+                                {list.errors > 0 && <span style={{ color: '#EF4444' }}>⚠️ {list.errors} errors</span>}
+                                {list.duplicates > 0 && <span style={{ color: '#F59E0B' }}>🔁 {list.duplicates} duplicates</span>}
+                              </div>
+                            </div>
+                            <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
+                              <span style={{
+                                padding: '4px 12px',
+                                borderRadius: '12px',
+                                fontSize: '12px',
+                                fontWeight: '500',
+                                backgroundColor: list.status === 'Validated' ? '#10B98120' : '#F59E0B20',
+                                color: list.status === 'Validated' ? '#10B981' : '#F59E0B'
+                              }}>
+                                {list.status}
+                              </span>
+                              <button style={{
+                                padding: '8px 16px',
+                                background: '#1F2937',
+                                border: '1px solid #374151',
+                                borderRadius: '6px',
+                                color: '#9CA3AF',
+                                cursor: 'pointer',
+                                fontSize: '13px'
+                              }}>
+                                View Details
+                              </button>
+                              <button style={{
+                                padding: '8px 16px',
+                                background: '#3B82F6',
+                                border: 'none',
+                                borderRadius: '6px',
+                                color: '#FFFFFF',
+                                cursor: 'pointer',
+                                fontSize: '13px',
+                                fontWeight: '500'
+                              }}>
+                                Use in Campaign
+                              </button>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </>
+                )}
+
+                {/* CAMPAIGNS TAB */}
+                {activeTab === 'campaigns' && (
+                  <div style={{
+                    background: '#111827',
+                    border: '1px solid #1F2937',
+                    borderRadius: '12px',
+                    padding: '32px'
+                  }}>
+                    <h2 style={{ 
+                      fontSize: '20px',
+                      fontWeight: '600',
+                      margin: '0 0 24px 0',
+                      color: '#FFFFFF'
+                    }}>
+                      Create New Campaign
+                    </h2>
+
+                    {/* Progress Steps */}
+                    <div style={{ 
+                      display: 'flex',
+                      justifyContent: 'space-between',
+                      marginBottom: '40px',
+                      position: 'relative'
+                    }}>
+                      <div style={{
+                        position: 'absolute',
+                        top: '15px',
+                        left: '0',
+                        right: '0',
+                        height: '2px',
+                        background: '#1F2937',
+                        zIndex: 0
+                      }}>
+                        <div style={{
+                          height: '100%',
+                          width: `${((campaignStep - 1) / 3) * 100}%`,
+                          background: '#3B82F6',
+                          transition: 'width 0.3s'
+                        }} />
+                      </div>
+                      
+                      {[
+                        { num: 1, label: 'Select List' },
+                        { num: 2, label: 'Compose Email' },
+                        { num: 3, label: 'Preview & Send' },
+                        { num: 4, label: 'Confirm' }
+                      ].map((step) => (
+                        <div key={step.num} style={{ 
+                          display: 'flex',
+                          flexDirection: 'column',
+                          alignItems: 'center',
+                          flex: 1,
+                          zIndex: 1,
+                          position: 'relative'
+                        }}>
+                          <div style={{
+                            width: '32px',
+                            height: '32px',
+                            borderRadius: '50%',
+                            background: campaignStep >= step.num ? '#3B82F6' : '#1F2937',
+                            color: campaignStep >= step.num ? '#FFFFFF' : '#6B7280',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            fontSize: '14px',
+                            fontWeight: '600',
+                            marginBottom: '8px',
+                            border: `2px solid ${campaignStep >= step.num ? '#3B82F6' : '#374151'}`
+                          }}>
+                            {campaignStep > step.num ? '✓' : step.num}
+                          </div>
+                          <span style={{
+                            fontSize: '13px',
+                            color: campaignStep >= step.num ? '#E5E7EB' : '#6B7280',
+                            fontWeight: '500'
+                          }}>
+                            {step.label}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Step Content */}
+                    {campaignStep === 1 && (
+                      <div>
+                        <h3 style={{ 
+                          fontSize: '16px',
+                          fontWeight: '600',
+                          margin: '0 0 16px 0',
+                          color: '#FFFFFF'
+                        }}>
+                          Select Email List
+                        </h3>
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', marginBottom: '24px' }}>
+                          {emailLists.filter(l => l.status === 'Validated').map((list) => (
+                            <div
+                              key={list.id}
+                              onClick={() => setSelectedList(list.id)}
+                              style={{
+                                background: selectedList === list.id ? '#1F2937' : '#0A0E1A',
+                                border: selectedList === list.id ? '2px solid #3B82F6' : '1px solid #1F2937',
+                                borderRadius: '8px',
+                                padding: '16px',
+                                cursor: 'pointer',
+                                transition: 'all 0.2s'
+                              }}
+                            >
+                              <div style={{ 
+                                display: 'flex',
+                                justifyContent: 'space-between',
+                                alignItems: 'center'
+                              }}>
+                                <div>
+                                  <div style={{ 
+                                    fontSize: '15px',
+                                    fontWeight: '500',
+                                    color: '#FFFFFF',
+                                    marginBottom: '4px'
+                                  }}>
+                                    {list.name}
+                                  </div>
+                                  <div style={{ 
+                                    fontSize: '13px',
+                                    color: '#9CA3AF'
+                                  }}>
+                                    {list.contacts.toLocaleString()} contacts
+                                  </div>
+                                </div>
+                                <div style={{
+                                  width: '20px',
+                                  height: '20px',
+                                  borderRadius: '50%',
+                                  border: `2px solid ${selectedList === list.id ? '#3B82F6' : '#374151'}`,
+                                  background: selectedList === list.id ? '#3B82F6' : 'transparent',
+                                  display: 'flex',
+                                  alignItems: 'center',
+                                  justifyContent: 'center',
+                                  color: '#FFFFFF',
+                                  fontSize: '12px'
+                                }}>
+                                  {selectedList === list.id && '✓'}
+                                </div>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
+                    {campaignStep === 2 && (
+                      <div>
+                        <h3 style={{ 
+                          fontSize: '16px',
+                          fontWeight: '600',
+                          margin: '0 0 16px 0',
+                          color: '#FFFFFF'
+                        }}>
+                          Compose Your Email
+                        </h3>
+                        
+                        {/* Template Selection */}
+                        <div style={{ marginBottom: '24px' }}>
+                          <label style={{ 
+                            fontSize: '13px',
+                            color: '#9CA3AF',
+                            display: 'block',
+                            marginBottom: '8px'
+                          }}>
+                            Choose Template (Optional)
+                          </label>
+                          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '12px' }}>
+                            {templates.map((template) => (
+                              <div key={template.id} style={{
+                                background: '#0A0E1A',
+                                border: '1px solid #1F2937',
+                                borderRadius: '8px',
+                                padding: '16px',
+                                cursor: 'pointer',
+                                textAlign: 'center'
+                              }}>
+                                <div style={{ 
+                                  width: '100%',
+                                  height: '120px',
+                                  background: '#1F2937',
+                                  borderRadius: '6px',
+                                  marginBottom: '12px',
+                                  display: 'flex',
+                                  alignItems: 'center',
+                                  justifyContent: 'center',
+                                  fontSize: '32px'
+                                }}>
+                                  📧
+                                </div>
+                                <div style={{ 
+                                  fontSize: '14px',
+                                  fontWeight: '500',
+                                  color: '#FFFFFF',
+                                  marginBottom: '4px'
+                                }}>
+                                  {template.name}
+                                </div>
+                                <div style={{ 
+                                  fontSize: '12px',
+                                  color: '#9CA3AF'
+                                }}>
+                                  {template.category}
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+
+                        {/* Email Fields */}
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+                          <div>
+                            <label style={{ 
+                              fontSize: '13px',
+                              color: '#9CA3AF',
+                              display: 'block',
+                              marginBottom: '8px'
+                            }}>
+                              Campaign Name
+                            </label>
+                            <input
+                              type="text"
+                              placeholder="e.g., Q1 Investment Update"
+                              style={{
+                                width: '100%',
+                                padding: '12px',
+                                background: '#0A0E1A',
+                                border: '1px solid #1F2937',
+                                borderRadius: '8px',
+                                color: '#E5E7EB',
+                                fontSize: '14px'
+                              }}
+                            />
+                          </div>
+                          
+                          <div>
+                            <label style={{ 
+                              fontSize: '13px',
+                              color: '#9CA3AF',
+                              display: 'block',
+                              marginBottom: '8px'
+                            }}>
+                              Subject Line
+                            </label>
+                            <input
+                              type="text"
+                              placeholder="Enter email subject"
+                              style={{
+                                width: '100%',
+                                padding: '12px',
+                                background: '#0A0E1A',
+                                border: '1px solid #1F2937',
+                                borderRadius: '8px',
+                                color: '#E5E7EB',
+                                fontSize: '14px'
+                              }}
+                            />
+                          </div>
+
+                          <div>
+                            <label style={{ 
+                              fontSize: '13px',
+                              color: '#9CA3AF',
+                              display: 'block',
+                              marginBottom: '8px'
+                            }}>
+                              Email Body
+                            </label>
+                            <textarea
+                              placeholder="Write your email content here..."
+                              rows={10}
+                              style={{
+                                width: '100%',
+                                padding: '12px',
+                                background: '#0A0E1A',
+                                border: '1px solid #1F2937',
+                                borderRadius: '8px',
+                                color: '#E5E7EB',
+                                fontSize: '14px',
+                                fontFamily: 'inherit',
+                                resize: 'vertical'
+                              }}
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    )}
+
+                    {campaignStep === 3 && (
+                      <div>
+                        <h3 style={{ 
+                          fontSize: '16px',
+                          fontWeight: '600',
+                          margin: '0 0 16px 0',
+                          color: '#FFFFFF'
+                        }}>
+                          Preview & Schedule
+                        </h3>
+
+                        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px' }}>
+                          {/* Preview */}
+                          <div>
+                            <div style={{ 
+                              fontSize: '13px',
+                              color: '#9CA3AF',
+                              marginBottom: '12px'
+                            }}>
+                              Email Preview
+                            </div>
+                            <div style={{
+                              background: '#FFFFFF',
+                              borderRadius: '8px',
+                              padding: '24px',
+                              minHeight: '400px'
+                            }}>
+                              <div style={{ color: '#000', fontSize: '14px' }}>
+                                <div style={{ fontWeight: '600', marginBottom: '16px', fontSize: '18px' }}>
+                                  Q1 Investment Update
+                                </div>
+                                <p>Dear Investor,</p>
+                                <p>We're pleased to share our quarterly performance update...</p>
+                                <p style={{ marginTop: '20px' }}>Best regards,<br/>Dalmore Team</p>
+                              </div>
+                            </div>
+                          </div>
+
+                          {/* Settings */}
+                          <div>
+                            <div style={{ 
+                              fontSize: '13px',
+                              color: '#9CA3AF',
+                              marginBottom: '12px'
+                            }}>
+                              Campaign Settings
+                            </div>
+                            <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+                              <div style={{
+                                background: '#0A0E1A',
+                                border: '1px solid #1F2937',
+                                borderRadius: '8px',
+                                padding: '16px'
+                              }}>
+                                <div style={{ 
+                                  fontSize: '13px',
+                                  color: '#9CA3AF',
+                                  marginBottom: '8px'
+                                }}>
+                                  Recipients
+                                </div>
+                                <div style={{ 
+                                  fontSize: '20px',
+                                  fontWeight: '600',
+                                  color: '#FFFFFF'
+                                }}>
+                                  1,820 contacts
+                                </div>
+                              </div>
+
+                              <div>
+                                <label style={{ 
+                                  fontSize: '13px',
+                                  color: '#9CA3AF',
+                                  display: 'block',
+                                  marginBottom: '8px'
+                                }}>
+                                  Send Time
+                                </label>
+                                <select style={{
+                                  width: '100%',
+                                  padding: '12px',
+                                  background: '#0A0E1A',
+                                  border: '1px solid #1F2937',
+                                  borderRadius: '8px',
+                                  color: '#E5E7EB',
+                                  fontSize: '14px'
+                                }}>
+                                  <option>Send immediately</option>
+                                  <option>Schedule for later</option>
+                                </select>
+                              </div>
+
+                              <div>
+                                <label style={{ 
+                                  fontSize: '13px',
+                                  color: '#9CA3AF',
+                                  display: 'flex',
+                                  alignItems: 'center',
+                                  gap: '8px',
+                                  cursor: 'pointer'
+                                }}>
+                                  <input type="checkbox" />
+                                  Track opens and clicks
+                                </label>
+                              </div>
+
+                              <div>
+                                <label style={{ 
+                                  fontSize: '13px',
+                                  color: '#9CA3AF',
+                                  display: 'flex',
+                                  alignItems: 'center',
+                                  gap: '8px',
+                                  cursor: 'pointer'
+                                }}>
+                                  <input type="checkbox" />
+                                  Send test email to myself
+                                </label>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+
+                    {campaignStep === 4 && (
+                      <div style={{ textAlign: 'center', padding: '40px 0' }}>
+                        <div style={{ fontSize: '64px', marginBottom: '24px' }}>✅</div>
+                        <h3 style={{ 
+                          fontSize: '24px',
+                          fontWeight: '600',
+                          margin: '0 0 12px 0',
+                          color: '#FFFFFF'
+                        }}>
+                          Campaign Sent Successfully!
+                        </h3>
+                        <p style={{ 
+                          margin: '0 0 32px 0',
+                          color: '#9CA3AF',
+                          fontSize: '14px'
+                        }}>
+                          Your email campaign has been sent to 1,820 recipients.
+                        </p>
+                        <button
+                          onClick={() => setActiveTab('overview')}
+                          style={{
+                            padding: '12px 24px',
+                            backgroundColor: '#3B82F6',
+                            color: 'white',
+                            border: 'none',
+                            borderRadius: '8px',
+                            cursor: 'pointer',
+                            fontSize: '14px',
+                            fontWeight: '500'
+                          }}
+                        >
+                          View Analytics
+                        </button>
+                      </div>
+                    )}
+
+                    {/* Navigation Buttons */}
+                    {campaignStep < 4 && (
+                      <div style={{ 
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                        marginTop: '32px',
+                        paddingTop: '24px',
+                        borderTop: '1px solid #1F2937'
+                      }}>
+                        <button
+                          onClick={() => setCampaignStep(Math.max(1, campaignStep - 1))}
+                          disabled={campaignStep === 1}
+                          style={{
+                            padding: '10px 24px',
+                            background: campaignStep === 1 ? '#0A0E1A' : '#1F2937',
+                            border: '1px solid #374151',
+                            borderRadius: '8px',
+                            color: campaignStep === 1 ? '#6B7280' : '#E5E7EB',
+                            cursor: campaignStep === 1 ? 'not-allowed' : 'pointer',
+                            fontSize: '14px',
+                            fontWeight: '500'
+                          }}
+                        >
+                          ← Back
+                        </button>
+                        <button
+                          onClick={() => setCampaignStep(Math.min(4, campaignStep + 1))}
+                          disabled={campaignStep === 1 && !selectedList}
+                          style={{
+                            padding: '10px 24px',
+                            backgroundColor: (campaignStep === 1 && !selectedList) ? '#1F2937' : '#3B82F6',
+                            color: 'white',
+                            border: 'none',
+                            borderRadius: '8px',
+                            cursor: (campaignStep === 1 && !selectedList) ? 'not-allowed' : 'pointer',
+                            fontSize: '14px',
+                            fontWeight: '500'
+                          }}
+                        >
+                          {campaignStep === 3 ? 'Send Campaign' : 'Continue →'}
+                        </button>
+                      </div>
+                    )}
+                  </div>
+                )}
+
+                {/* SETTINGS TAB */}
+                {activeTab === 'settings' && (
+                  <div style={{
+                    background: '#111827',
+                    border: '1px solid #1F2937',
+                    borderRadius: '12px',
+                    padding: '32px'
+                  }}>
+                    <h2 style={{ 
+                      fontSize: '20px',
+                      fontWeight: '600',
+                      margin: '0 0 24px 0',
+                      color: '#FFFFFF'
+                    }}>
+                      Email Marketing Settings
+                    </h2>
+
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+                      {/* Sender Information */}
+                      <div>
+                        <h3 style={{ 
+                          fontSize: '16px',
+                          fontWeight: '600',
+                          margin: '0 0 16px 0',
+                          color: '#FFFFFF'
+                        }}>
+                          Sender Information
+                        </h3>
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+                          <div>
+                            <label style={{ 
+                              fontSize: '13px',
+                              color: '#9CA3AF',
+                              display: 'block',
+                              marginBottom: '8px'
+                            }}>
+                              From Name
+                            </label>
+                            <input
+                              type="text"
+                              placeholder="Dalmore"
+                              style={{
+                                width: '100%',
+                                padding: '12px',
+                                background: '#0A0E1A',
+                                border: '1px solid #1F2937',
+                                borderRadius: '8px',
+                                color: '#E5E7EB',
+                                fontSize: '14px'
+                              }}
+                            />
+                          </div>
+                          <div>
+                            <label style={{ 
+                              fontSize: '13px',
+                              color: '#9CA3AF',
+                              display: 'block',
+                              marginBottom: '8px'
+                            }}>
+                              From Email
+                            </label>
+                            <input
+                              type="email"
+                              placeholder="noreply@dalmore.com"
+                              style={{
+                                width: '100%',
+                                padding: '12px',
+                                background: '#0A0E1A',
+                                border: '1px solid #1F2937',
+                                borderRadius: '8px',
+                                color: '#E5E7EB',
+                                fontSize: '14px'
+                              }}
+                            />
+                          </div>
+                          <div>
+                            <label style={{ 
+                              fontSize: '13px',
+                              color: '#9CA3AF',
+                              display: 'block',
+                              marginBottom: '8px'
+                            }}>
+                              Reply-To Email
+                            </label>
+                            <input
+                              type="email"
+                              placeholder="support@dalmore.com"
+                              style={{
+                                width: '100%',
+                                padding: '12px',
+                                background: '#0A0E1A',
+                                border: '1px solid #1F2937',
+                                borderRadius: '8px',
+                                color: '#E5E7EB',
+                                fontSize: '14px'
+                              }}
+                            />
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Email Integrations */}
+                      <div>
+                        <h3 style={{ 
+                          fontSize: '16px',
+                          fontWeight: '600',
+                          margin: '0 0 16px 0',
+                          color: '#FFFFFF'
+                        }}>
+                          Email Service Integration
+                        </h3>
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                          {['Raisy', 'SendGrid', 'Mailchimp', 'AWS SES'].map((service) => (
+                            <div key={service} style={{
+                              background: '#0A0E1A',
+                              border: '1px solid #1F2937',
+                              borderRadius: '8px',
+                              padding: '16px',
+                              display: 'flex',
+                              justifyContent: 'space-between',
+                              alignItems: 'center'
+                            }}>
+                              <div>
+                                <div style={{ 
+                                  fontSize: '15px',
+                                  fontWeight: '500',
+                                  color: '#FFFFFF',
+                                  marginBottom: '4px'
+                                }}>
+                                  {service}
+                                </div>
+                                <div style={{ 
+                                  fontSize: '13px',
+                                  color: '#9CA3AF'
+                                }}>
+                                  {service === 'Raisy' ? 'Connected' : 'Not connected'}
+                                </div>
+                              </div>
+                              <button style={{
+                                padding: '8px 16px',
+                                background: service === 'Raisy' ? '#10B98120' : '#3B82F6',
+                                border: 'none',
+                                borderRadius: '6px',
+                                color: service === 'Raisy' ? '#10B981' : '#FFFFFF',
+                                cursor: 'pointer',
+                                fontSize: '13px',
+                                fontWeight: '500'
+                              }}>
+                                {service === 'Raisy' ? 'Disconnect' : 'Connect'}
+                              </button>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Preferences */}
+                      <div>
+                        <h3 style={{ 
+                          fontSize: '16px',
+                          fontWeight: '600',
+                          margin: '0 0 16px 0',
+                          color: '#FFFFFF'
+                        }}>
+                          Email Preferences
+                        </h3>
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                          <label style={{ 
+                            fontSize: '13px',
+                            color: '#E5E7EB',
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: '8px',
+                            cursor: 'pointer'
+                          }}>
+                            <input type="checkbox" defaultChecked />
+                            Track email opens
+                          </label>
+                          <label style={{ 
+                            fontSize: '13px',
+                            color: '#E5E7EB',
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: '8px',
+                            cursor: 'pointer'
+                          }}>
+                            <input type="checkbox" defaultChecked />
+                            Track link clicks
+                          </label>
+                          <label style={{ 
+                            fontSize: '13px',
+                            color: '#E5E7EB',
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: '8px',
+                            cursor: 'pointer'
+                          }}>
+                            <input type="checkbox" defaultChecked />
+                            Include unsubscribe link
+                          </label>
+                          <label style={{ 
+                            fontSize: '13px',
+                            color: '#E5E7EB',
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: '8px',
+                            cursor: 'pointer'
+                          }}>
+                            <input type="checkbox" />
+                            Send copy to admin
+                          </label>
+                        </div>
+                      </div>
+
+                      {/* Save Button */}
+                      <div style={{ paddingTop: '24px', borderTop: '1px solid #1F2937' }}>
+                        <button style={{
+                          padding: '12px 24px',
+                          backgroundColor: '#3B82F6',
+                          color: 'white',
+                          border: 'none',
+                          borderRadius: '8px',
+                          cursor: 'pointer',
+                          fontSize: '14px',
+                          fontWeight: '500'
+                        }}>
+                          Save Settings
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+          );
+        };
+
+        ReactDOM.render(<EmailMarketing />, document.getElementById('root'));
+    </script>
+</body>
+</html>
