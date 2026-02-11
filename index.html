@@ -1,1425 +1,1355 @@
 <!DOCTYPE html>
 <html lang="en">
+
+<!-- Mirrored from www.hyfatech.com/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 11 Jan 2024 19:06:23 GMT -->
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dalmore - Email Marketing</title>
-    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    <script src="https://unpkg.com/recharts@2.5.0/dist/Recharts.js"></script>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            margin: 0;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: #0A0E1A;
-        }
-        input[type="checkbox"] {
-            width: 18px;
-            height: 18px;
-            cursor: pointer;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="Assets/Fonts/font-poppin.css" rel="stylesheet" />
+  <link rel="stylesheet" href="CSS/bootstrapCSS/bootstrap.min.css" />
+  <link rel="stylesheet" href="CSS/app.css">
+  <link rel="stylesheet" rel="stylesheet" href="CSS/mycustompackaging.css" />
+  <link rel="stylesheet" href="CSS/car-mate.css" />
+  <link rel="stylesheet" href="CSS/index.css" />
+  <!-- <link rel="stylesheet" href="./CSS/animation.css"> -->
+  <link rel="stylesheet" href="CSS/cursor.css" />
+  <!-- <link rel="stylesheet" href="./CSS/menu.css"> -->
+  <link rel="icon" type="image/x-icon" href="Assets/Images/favicon.ico" />
+  <title>Home</title>
 </head>
+
 <body>
-    <div id="root"></div>
+  <!--header nav bar is starting-->
+  <header>
+    <div class="container mp-25">
+      <nav class="navbar bg-white">
+        <a href="index.html">
+          <img style="margin-top: 25px" height="28px" src="Assets/Images/Home/logo.png" alt="Usmanlogo" />
+        </a>
+        <a href="contact-us.html">
+          <p id="navbar" class="text-underline">Hire Me</p>
+        </a>
+        <img id="mobile-menu-btn" class="mobile-only menu-icon" src="Assets/Images/Home/list.svg" alt="menu" />
+      </nav>
+      <!--Header navbar is ending and first section is starting-->
+      <div class="row header-cover-section">
 
-    <script type="text/babel">
-        const { useState } = React;
-        const { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, LineChart, Line, PieChart, Pie, Cell } = Recharts;
+        <div class="col-md-8">
+          <div class="anim-head-container">
+            <ul class="v-slides">
+              <!-- <li class="v-slide"> -->
+              <h1 class="h1">
+                <span>I'm </span>
 
-        const EmailMarketing = () => {
-          const [activeTab, setActiveTab] = useState('overview');
-          const [activeSubTab, setActiveSubTab] = useState('analytic');
-          const [selectedList, setSelectedList] = useState(null);
-          const [campaignStep, setCampaignStep] = useState(1);
+                <strong> <strong></strong>
+                  Hafiz Muhammad Adnan </strong>
+                </span>
+                a UI/UX Designer passionate
+              </h1>
+              </li>
+              <!-- <li class="v-slide"> -->
+              <h1 class="h1">
+                <strong>problem
+                  solver</strong>
 
-          // Mock data
-          const trafficData = [
-            { month: 'Jan', emails: 450 },
-            { month: 'Feb', emails: 780 },
-            { month: 'March', emails: 1200 },
-            { month: 'April', emails: 1450 },
-            { month: 'May', emails: 1300 },
-            { month: 'June', emails: 1400 },
-            { month: 'July', emails: 1500 },
-            { month: 'August', emails: 1600 },
-            { month: 'September', emails: 1700 },
-            { month: 'October', emails: 1650 },
-            { month: 'November', emails: 1800 },
-            { month: 'December', emails: 450 },
-          ];
+                <!-- <span style="padding-left: 2px" class="orange-text">
+                    Designing</span>
+                  <span>
+                    intuitive experiences.
+                  </span> -->
+              </h1>
 
-          const openRateData = [
-            { month: 'Jan', rate: 25 },
-            { month: 'Feb', rate: 28 },
-            { month: 'March', rate: 32 },
-            { month: 'April', rate: 35 },
-            { month: 'May', rate: 33 },
-            { month: 'June', rate: 36 },
-            { month: 'July', rate: 38 },
-            { month: 'August', rate: 40 },
-            { month: 'September', rate: 39 },
-            { month: 'October', rate: 41 },
-            { month: 'November', rate: 42 },
-            { month: 'December', rate: 38 },
-          ];
+              </li>
 
-          const engagementData = [
-            { name: 'Opened', value: 4200, color: '#3B82F6' },
-            { name: 'Clicked', value: 1800, color: '#10B981' },
-            { name: 'Bounced', value: 450, color: '#EF4444' },
-            { name: 'Unsubscribed', value: 150, color: '#F59E0B' },
-          ];
+            </ul>
 
-          const recentCampaigns = [
-            { id: 'C12345', name: 'Q4 Investment Update', recipients: 1250, sent: '12/15/2024', openRate: '42%', clickRate: '18%', status: 'Completed', conversions: 23 },
-            { id: 'C12346', name: 'New Fund Launch', recipients: 2100, sent: '12/10/2024', openRate: '38%', clickRate: '15%', status: 'Completed', conversions: 31 },
-            { id: 'C12347', name: 'Holiday Greetings', recipients: 3400, sent: '12/22/2024', openRate: '55%', clickRate: '8%', status: 'Completed', conversions: 12 },
-            { id: 'C12348', name: 'Portfolio Performance', recipients: 1850, sent: '01/05/2025', openRate: '45%', clickRate: '22%', status: 'Completed', conversions: 41 },
-            { id: 'C12349', name: 'Investor Survey', recipients: 980, sent: '01/12/2025', openRate: '32%', clickRate: '12%', status: 'Completed', conversions: 8 },
-            { id: 'C12350', name: 'Market Insights', recipients: 2200, sent: '01/20/2025', openRate: '48%', clickRate: '25%', status: 'Scheduled', conversions: 0 },
-          ];
+          </div>
 
-          const emailLists = [
-            { id: 'L001', name: 'All Investors', contacts: 3450, uploaded: '11/15/2024', status: 'Validated', errors: 0, duplicates: 12 },
-            { id: 'L002', name: 'Accredited Investors', contacts: 1820, uploaded: '12/01/2024', status: 'Validated', errors: 3, duplicates: 5 },
-            { id: 'L003', name: 'High-Net-Worth', contacts: 620, uploaded: '12/10/2024', status: 'Validated', errors: 0, duplicates: 2 },
-            { id: 'L004', name: 'Institutional Investors', contacts: 285, uploaded: '12/20/2024', status: 'Processing', errors: 1, duplicates: 0 },
-            { id: 'L005', name: 'Recent Conversions', contacts: 142, uploaded: '01/05/2025', status: 'Validated', errors: 0, duplicates: 1 },
-          ];
 
-          const templates = [
-            { id: 'T001', name: 'Investment Update', category: 'Newsletter', preview: 'Modern layout with charts' },
-            { id: 'T002', name: 'Fund Launch', category: 'Announcement', preview: 'Bold header with CTA' },
-            { id: 'T003', name: 'Performance Report', category: 'Report', preview: 'Data-focused design' },
-            { id: 'T004', name: 'Event Invitation', category: 'Event', preview: 'Elegant invitation style' },
-          ];
 
-          return (
-            <div style={{ 
-              minHeight: '100vh', 
-              backgroundColor: '#0A0E1A',
-              color: '#E5E7EB',
-              fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
-            }}>
-              {/* Header */}
-              <div style={{ 
-                padding: '24px 32px',
-                borderBottom: '1px solid #1F2937',
-                display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'center'
-              }}>
-                <div>
-                  <h1 style={{ 
-                    fontSize: '28px', 
-                    fontWeight: '600', 
-                    margin: '0 0 8px 0',
-                    color: '#FFFFFF'
-                  }}>
-                    Email Marketing
-                  </h1>
-                  <p style={{ 
-                    margin: 0, 
-                    color: '#9CA3AF',
-                    fontSize: '14px'
-                  }}>
-                    Engage with your investors through targeted email campaigns
-                  </p>
+
+          <!-- <h1>
+                I'm <strong>Hafiz Muhammad Adnan</strong>, I am a  Product Designer passionate <strong>problem
+                  solver</strong>. </h1> -->
+
+
+          <p class="p-18 header-p">
+            As a UI/UX Designer, I use Design Thinking and System Thinking for a single approach. Design Thinking
+            focuses on users and flexible problem solving, while System Thinking considers the broad impact of top to
+            bottom solutions. This mixture generates value and creativity, addressing complexity and dynamic changes.
+          </p>
+          <a class="color-black" href="all-project.html">
+            <div class="projects-button">
+              <p>
+                See All Projects
+                <img src="Assets/Images/Home/header-arrowInCircle.svg" alt="arrow-image" />
+              </p>
+            </div>
+          </a>
+
+        </div>
+        <div class="col-md-4">
+
+          <a class="color-black" href="#">
+            <img src="Assets/Images/Main Image/Profile-pic.png" alt="">
+
+          </a>
+        </div>
+
+      </div>
+      <div>
+        <img src="Assets/Images/Home/Menu.svg" class="menu-img menu-btn ham" alt="menu-image" />
+      </div>
+
+  </header>
+
+  <!-- header ends -->
+  <!-- menu section is starting here -->
+  <section class="menu-section" style="display: none">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-11"></div>
+        <div class="col-md-1">
+          <button id="cross-btn" class="cross-btn float-right ham">
+            <img data-magnetic data-cursor="-opaque" src="Assets/Images/Home/cross.svg" alt="cross-button" />
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="container-fluid">
+        <div class="row menu-row">
+          <div class="col-md-5 p-0 font-bold" data-cursor="-opaque">Menu</div>
+          <div class="col-md-7">
+            <a href="index.html">
+              <div class="row menu-headings-row" data-magnetic data-cursor="-opaque -md">
+                <div class="col-1 pl-0">
+                  <p class="p-12 font-bold">01.</p>
                 </div>
-                <button style={{
-                  padding: '10px 20px',
-                  backgroundColor: '#3B82F6',
-                  color: 'white',
-                  border: 'none',
-                  borderRadius: '8px',
-                  cursor: 'pointer',
-                  fontSize: '14px',
-                  fontWeight: '500',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '8px'
-                }}>
-                  <span>+</span>
-                  Create Campaign
-                </button>
-              </div>
-
-              {/* Main Tabs */}
-              <div style={{ 
-                padding: '0 32px',
-                borderBottom: '1px solid #1F2937'
-              }}>
-                <div style={{ display: 'flex', gap: '32px' }}>
-                  {['overview', 'email-lists', 'campaigns', 'settings'].map(tab => (
-                    <button
-                      key={tab}
-                      onClick={() => setActiveTab(tab)}
-                      style={{
-                        padding: '16px 0',
-                        background: 'none',
-                        border: 'none',
-                        color: activeTab === tab ? '#3B82F6' : '#9CA3AF',
-                        cursor: 'pointer',
-                        fontSize: '14px',
-                        fontWeight: '500',
-                        borderBottom: activeTab === tab ? '2px solid #3B82F6' : '2px solid transparent',
-                        textTransform: 'capitalize'
-                      }}
-                    >
-                      {tab.replace('-', ' ')}
-                    </button>
-                  ))}
+                <div class="col-10 h4">Home</div>
+                <div class="col-push-1 float-right ml-auto">
+                  <img src="Assets/Images/Home/arrow-left.svg" alt="arrow-left" />
                 </div>
               </div>
+            </a>
+            <a href="services.html">
+              <div class="row menu-headings-row" data-magnetic data-cursor="-opaque -md">
+                <div class="col-1 pl-0">
+                  <p class="p-12 font-bold">02.</p>
+                </div>
+                <div class="col-10 h4">Services</div>
+                <div class="col-push-1 float-right ml-auto">
+                  <img src="Assets/Images/Home/arrow-left.svg" alt="arrow-left" />
+                </div>
+              </div>
+            </a>
+            <a href="all-project.html">
+              <div class="row menu-headings-row" data-magnetic data-cursor="-opaque -md">
+                <div class="col-1 pl-0">
+                  <p class="p-12 font-bold">03.</p>
+                </div>
+                <div class="col-10 h4">Works</div>
+                <div class="col-push-1 float-right ml-auto">
+                  <img src="Assets/Images/Home/arrow-left.svg" alt="arrow-left" />
+                </div>
+              </div>
+            </a>
+            <a href="about-us.html">
+              <div class="row menu-headings-row" data-magnetic data-cursor="-opaque -md">
+                <div class="col-1 pl-0">
+                  <p class="p-12 font-bold">04.</p>
+                </div>
+                <div class="col-10 h4">About</div>
+                <div class="col-push-1 float-right ml-auto">
+                  <img src="Assets/Images/Home/arrow-left.svg" alt="arrow-left" />
+                </div>
+              </div>
+            </a>
 
-              {/* Content Area */}
-              <div style={{ padding: '32px' }}>
-                
-                {/* OVERVIEW TAB */}
-                {activeTab === 'overview' && (
-                  <>
-                    {/* Sub Tabs */}
-                    <div style={{ display: 'flex', gap: '24px', marginBottom: '24px' }}>
-                      {['analytic', 'email-list', 'campaign', 'settings'].map(subTab => (
-                        <button
-                          key={subTab}
-                          onClick={() => setActiveSubTab(subTab)}
-                          style={{
-                            padding: '8px 16px',
-                            background: activeSubTab === subTab ? '#1F2937' : 'transparent',
-                            border: 'none',
-                            color: activeSubTab === subTab ? '#3B82F6' : '#9CA3AF',
-                            cursor: 'pointer',
-                            fontSize: '13px',
-                            fontWeight: '500',
-                            borderRadius: '6px',
-                            textTransform: 'capitalize'
-                          }}
-                        >
-                          {subTab.replace('-', ' ')}
-                        </button>
-                      ))}
-                    </div>
-
-                    {/* Metrics Cards */}
-                    <div style={{ 
-                      display: 'grid', 
-                      gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
-                      gap: '20px',
-                      marginBottom: '32px'
-                    }}>
-                      {[
-                        { label: 'Total Emails Uploaded', value: '12,847', change: '+32% this month', up: true },
-                        { label: 'Total Emails Sent', value: '8,420', change: '+18% from last period', up: true },
-                        { label: 'Avg. Open Rate', value: '42%', change: '+5% from last period', up: true },
-                        { label: 'Avg. Click Rate', value: '18%', change: '+2% from last period', up: true },
-                        { label: 'Total Conversions', value: '342', change: '+8.3% from last period', up: true },
-                        { label: 'Active Campaigns', value: '12', change: '3 scheduled', up: false }
-                      ].map((metric, idx) => (
-                        <div key={idx} style={{
-                          background: '#111827',
-                          border: '1px solid #1F2937',
-                          borderRadius: '12px',
-                          padding: '20px'
-                        }}>
-                          <div style={{ 
-                            fontSize: '13px', 
-                            color: '#9CA3AF',
-                            marginBottom: '8px'
-                          }}>
-                            {metric.label}
-                          </div>
-                          <div style={{ 
-                            fontSize: '28px', 
-                            fontWeight: '600',
-                            color: '#FFFFFF',
-                            marginBottom: '8px'
-                          }}>
-                            {metric.value}
-                          </div>
-                          <div style={{ 
-                            fontSize: '12px',
-                            color: metric.up ? '#10B981' : '#9CA3AF',
-                            display: 'flex',
-                            alignItems: 'center',
-                            gap: '4px'
-                          }}>
-                            {metric.up && <span>↑</span>}
-                            {metric.change}
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-
-                    {/* Charts Row */}
-                    <div style={{ 
-                      display: 'grid',
-                      gridTemplateColumns: '2fr 1fr',
-                      gap: '20px',
-                      marginBottom: '32px'
-                    }}>
-                      {/* Email Traffic Chart */}
-                      <div style={{
-                        background: '#111827',
-                        border: '1px solid #1F2937',
-                        borderRadius: '12px',
-                        padding: '24px'
-                      }}>
-                        <h3 style={{ 
-                          fontSize: '16px',
-                          fontWeight: '600',
-                          margin: '0 0 24px 0',
-                          color: '#FFFFFF'
-                        }}>
-                          Email Traffic Over Time
-                        </h3>
-                        <ResponsiveContainer width="100%" height={300}>
-                          <BarChart data={trafficData}>
-                            <CartesianGrid strokeDasharray="3 3" stroke="#1F2937" />
-                            <XAxis dataKey="month" stroke="#9CA3AF" style={{ fontSize: '12px' }} />
-                            <YAxis stroke="#9CA3AF" style={{ fontSize: '12px' }} />
-                            <Tooltip 
-                              contentStyle={{ 
-                                backgroundColor: '#1F2937', 
-                                border: '1px solid #374151',
-                                borderRadius: '8px',
-                                color: '#E5E7EB'
-                              }} 
-                            />
-                            <Bar dataKey="emails" fill="#3B82F6" radius={[8, 8, 0, 0]} />
-                          </BarChart>
-                        </ResponsiveContainer>
-                      </div>
-
-                      {/* Engagement Breakdown */}
-                      <div style={{
-                        background: '#111827',
-                        border: '1px solid #1F2937',
-                        borderRadius: '12px',
-                        padding: '24px'
-                      }}>
-                        <h3 style={{ 
-                          fontSize: '16px',
-                          fontWeight: '600',
-                          margin: '0 0 24px 0',
-                          color: '#FFFFFF'
-                        }}>
-                          Engagement Breakdown
-                        </h3>
-                        <ResponsiveContainer width="100%" height={300}>
-                          <PieChart>
-                            <Pie
-                              data={engagementData}
-                              cx="50%"
-                              cy="50%"
-                              innerRadius={60}
-                              outerRadius={80}
-                              paddingAngle={5}
-                              dataKey="value"
-                            >
-                              {engagementData.map((entry, index) => (
-                                <Cell key={`cell-${index}`} fill={entry.color} />
-                              ))}
-                            </Pie>
-                            <Tooltip 
-                              contentStyle={{ 
-                                backgroundColor: '#1F2937', 
-                                border: '1px solid #374151',
-                                borderRadius: '8px',
-                                color: '#E5E7EB'
-                              }} 
-                            />
-                          </PieChart>
-                        </ResponsiveContainer>
-                        <div style={{ marginTop: '16px' }}>
-                          {engagementData.map((item, idx) => (
-                            <div key={idx} style={{ 
-                              display: 'flex', 
-                              justifyContent: 'space-between',
-                              alignItems: 'center',
-                              padding: '8px 0',
-                              borderBottom: idx < engagementData.length - 1 ? '1px solid #1F2937' : 'none'
-                            }}>
-                              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                                <div style={{ 
-                                  width: '12px', 
-                                  height: '12px', 
-                                  borderRadius: '3px',
-                                  backgroundColor: item.color 
-                                }} />
-                                <span style={{ fontSize: '13px', color: '#9CA3AF' }}>{item.name}</span>
-                              </div>
-                              <span style={{ fontSize: '14px', fontWeight: '500', color: '#FFFFFF' }}>
-                                {item.value.toLocaleString()}
-                              </span>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Open Rate Trend */}
-                    <div style={{
-                      background: '#111827',
-                      border: '1px solid #1F2937',
-                      borderRadius: '12px',
-                      padding: '24px',
-                      marginBottom: '32px'
-                    }}>
-                      <h3 style={{ 
-                        fontSize: '16px',
-                        fontWeight: '600',
-                        margin: '0 0 24px 0',
-                        color: '#FFFFFF'
-                      }}>
-                        Open Rate Trend
-                      </h3>
-                      <ResponsiveContainer width="100%" height={250}>
-                        <LineChart data={openRateData}>
-                          <CartesianGrid strokeDasharray="3 3" stroke="#1F2937" />
-                          <XAxis dataKey="month" stroke="#9CA3AF" style={{ fontSize: '12px' }} />
-                          <YAxis stroke="#9CA3AF" style={{ fontSize: '12px' }} />
-                          <Tooltip 
-                            contentStyle={{ 
-                              backgroundColor: '#1F2937', 
-                              border: '1px solid #374151',
-                              borderRadius: '8px',
-                              color: '#E5E7EB'
-                            }} 
-                          />
-                          <Line 
-                            type="monotone" 
-                            dataKey="rate" 
-                            stroke="#10B981" 
-                            strokeWidth={2}
-                            dot={{ fill: '#10B981', r: 4 }}
-                          />
-                        </LineChart>
-                      </ResponsiveContainer>
-                    </div>
-
-                    {/* Recent Campaigns Table */}
-                    <div style={{
-                      background: '#111827',
-                      border: '1px solid #1F2937',
-                      borderRadius: '12px',
-                      padding: '24px'
-                    }}>
-                      <div style={{ 
-                        display: 'flex', 
-                        justifyContent: 'space-between',
-                        alignItems: 'center',
-                        marginBottom: '20px'
-                      }}>
-                        <h3 style={{ 
-                          fontSize: '16px',
-                          fontWeight: '600',
-                          margin: 0,
-                          color: '#FFFFFF'
-                        }}>
-                          Recent Campaigns
-                        </h3>
-                        <div style={{ display: 'flex', gap: '12px' }}>
-                          <input 
-                            type="text"
-                            placeholder="Search by name"
-                            style={{
-                              padding: '8px 12px',
-                              background: '#0A0E1A',
-                              border: '1px solid #1F2937',
-                              borderRadius: '6px',
-                              color: '#E5E7EB',
-                              fontSize: '13px',
-                              width: '200px'
-                            }}
-                          />
-                          <button style={{
-                            padding: '8px 16px',
-                            background: '#1F2937',
-                            border: '1px solid #374151',
-                            borderRadius: '6px',
-                            color: '#9CA3AF',
-                            cursor: 'pointer',
-                            fontSize: '13px'
-                          }}>
-                            Filter
-                          </button>
-                        </div>
-                      </div>
-
-                      <div style={{ overflowX: 'auto' }}>
-                        <table style={{ 
-                          width: '100%', 
-                          borderCollapse: 'collapse'
-                        }}>
-                          <thead>
-                            <tr style={{ borderBottom: '1px solid #1F2937' }}>
-                              <th style={{ padding: '12px', textAlign: 'left', fontSize: '12px', fontWeight: '500', color: '#9CA3AF' }}>Campaign ID</th>
-                              <th style={{ padding: '12px', textAlign: 'left', fontSize: '12px', fontWeight: '500', color: '#9CA3AF' }}>Campaign Name</th>
-                              <th style={{ padding: '12px', textAlign: 'left', fontSize: '12px', fontWeight: '500', color: '#9CA3AF' }}>Recipients</th>
-                              <th style={{ padding: '12px', textAlign: 'left', fontSize: '12px', fontWeight: '500', color: '#9CA3AF' }}>Date Sent</th>
-                              <th style={{ padding: '12px', textAlign: 'left', fontSize: '12px', fontWeight: '500', color: '#9CA3AF' }}>Open Rate</th>
-                              <th style={{ padding: '12px', textAlign: 'left', fontSize: '12px', fontWeight: '500', color: '#9CA3AF' }}>Click Rate</th>
-                              <th style={{ padding: '12px', textAlign: 'left', fontSize: '12px', fontWeight: '500', color: '#9CA3AF' }}>Conversions</th>
-                              <th style={{ padding: '12px', textAlign: 'left', fontSize: '12px', fontWeight: '500', color: '#9CA3AF' }}>Status</th>
-                              <th style={{ padding: '12px', textAlign: 'left', fontSize: '12px', fontWeight: '500', color: '#9CA3AF' }}>Action</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            {recentCampaigns.map((campaign, idx) => (
-                              <tr key={campaign.id} style={{ 
-                                borderBottom: idx < recentCampaigns.length - 1 ? '1px solid #1F2937' : 'none'
-                              }}>
-                                <td style={{ padding: '16px 12px', fontSize: '13px', color: '#9CA3AF' }}>{campaign.id}</td>
-                                <td style={{ padding: '16px 12px', fontSize: '13px', color: '#E5E7EB', fontWeight: '500' }}>{campaign.name}</td>
-                                <td style={{ padding: '16px 12px', fontSize: '13px', color: '#E5E7EB' }}>{campaign.recipients.toLocaleString()}</td>
-                                <td style={{ padding: '16px 12px', fontSize: '13px', color: '#9CA3AF' }}>{campaign.sent}</td>
-                                <td style={{ padding: '16px 12px', fontSize: '13px', color: '#10B981', fontWeight: '500' }}>{campaign.openRate}</td>
-                                <td style={{ padding: '16px 12px', fontSize: '13px', color: '#3B82F6', fontWeight: '500' }}>{campaign.clickRate}</td>
-                                <td style={{ padding: '16px 12px', fontSize: '13px', color: '#E5E7EB' }}>{campaign.conversions}</td>
-                                <td style={{ padding: '16px 12px' }}>
-                                  <span style={{
-                                    padding: '4px 12px',
-                                    borderRadius: '12px',
-                                    fontSize: '12px',
-                                    fontWeight: '500',
-                                    backgroundColor: campaign.status === 'Completed' ? '#10B98120' : '#F59E0B20',
-                                    color: campaign.status === 'Completed' ? '#10B981' : '#F59E0B'
-                                  }}>
-                                    {campaign.status}
-                                  </span>
-                                </td>
-                                <td style={{ padding: '16px 12px' }}>
-                                  <button style={{
-                                    padding: '6px 12px',
-                                    background: 'transparent',
-                                    border: '1px solid #374151',
-                                    borderRadius: '6px',
-                                    color: '#9CA3AF',
-                                    cursor: 'pointer',
-                                    fontSize: '12px'
-                                  }}>
-                                    👁️ View
-                                  </button>
-                                </td>
-                              </tr>
-                            ))}
-                          </tbody>
-                        </table>
-                      </div>
-
-                      {/* Pagination */}
-                      <div style={{ 
-                        display: 'flex', 
-                        justifyContent: 'space-between',
-                        alignItems: 'center',
-                        marginTop: '20px',
-                        fontSize: '13px',
-                        color: '#9CA3AF'
-                      }}>
-                        <span>Showing 1-6 of 150</span>
-                        <div style={{ display: 'flex', gap: '8px' }}>
-                          {[1, 2, 3, '...', 50].map((page, idx) => (
-                            <button key={idx} style={{
-                              padding: '6px 12px',
-                              background: page === 1 ? '#3B82F6' : '#1F2937',
-                              border: 'none',
-                              borderRadius: '6px',
-                              color: page === 1 ? '#FFFFFF' : '#9CA3AF',
-                              cursor: 'pointer',
-                              fontSize: '13px'
-                            }}>
-                              {page}
-                            </button>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                  </>
-                )}
-
-                {/* EMAIL LISTS TAB */}
-                {activeTab === 'email-lists' && (
-                  <>
-                    {/* Upload Section */}
-                    <div style={{
-                      background: '#111827',
-                      border: '2px dashed #374151',
-                      borderRadius: '12px',
-                      padding: '48px',
-                      marginBottom: '32px',
-                      textAlign: 'center'
-                    }}>
-                      <div style={{ fontSize: '48px', marginBottom: '16px' }}>📧</div>
-                      <h3 style={{ 
-                        fontSize: '18px',
-                        fontWeight: '600',
-                        margin: '0 0 8px 0',
-                        color: '#FFFFFF'
-                      }}>
-                        Upload Email List
-                      </h3>
-                      <p style={{ 
-                        margin: '0 0 20px 0',
-                        color: '#9CA3AF',
-                        fontSize: '14px'
-                      }}>
-                        Drag and drop your CSV file here or click to browse
-                      </p>
-                      <button style={{
-                        padding: '10px 24px',
-                        backgroundColor: '#3B82F6',
-                        color: 'white',
-                        border: 'none',
-                        borderRadius: '8px',
-                        cursor: 'pointer',
-                        fontSize: '14px',
-                        fontWeight: '500'
-                      }}>
-                        Choose File
-                      </button>
-                      <p style={{ 
-                        margin: '16px 0 0 0',
-                        color: '#6B7280',
-                        fontSize: '12px'
-                      }}>
-                        Supported format: CSV (max 10MB) • Must include email column
-                      </p>
-                    </div>
-
-                    {/* Email Lists */}
-                    <div style={{
-                      background: '#111827',
-                      border: '1px solid #1F2937',
-                      borderRadius: '12px',
-                      padding: '24px'
-                    }}>
-                      <h3 style={{ 
-                        fontSize: '16px',
-                        fontWeight: '600',
-                        margin: '0 0 20px 0',
-                        color: '#FFFFFF'
-                      }}>
-                        Uploaded Email Lists
-                      </h3>
-
-                      <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-                        {emailLists.map((list) => (
-                          <div key={list.id} style={{
-                            background: '#0A0E1A',
-                            border: '1px solid #1F2937',
-                            borderRadius: '8px',
-                            padding: '20px',
-                            display: 'flex',
-                            justifyContent: 'space-between',
-                            alignItems: 'center'
-                          }}>
-                            <div style={{ flex: 1 }}>
-                              <div style={{ 
-                                fontSize: '15px',
-                                fontWeight: '500',
-                                color: '#FFFFFF',
-                                marginBottom: '8px'
-                              }}>
-                                {list.name}
-                              </div>
-                              <div style={{ 
-                                fontSize: '13px',
-                                color: '#9CA3AF',
-                                display: 'flex',
-                                gap: '20px'
-                              }}>
-                                <span>📊 {list.contacts.toLocaleString()} contacts</span>
-                                <span>📅 Uploaded: {list.uploaded}</span>
-                                {list.errors > 0 && <span style={{ color: '#EF4444' }}>⚠️ {list.errors} errors</span>}
-                                {list.duplicates > 0 && <span style={{ color: '#F59E0B' }}>🔁 {list.duplicates} duplicates</span>}
-                              </div>
-                            </div>
-                            <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
-                              <span style={{
-                                padding: '4px 12px',
-                                borderRadius: '12px',
-                                fontSize: '12px',
-                                fontWeight: '500',
-                                backgroundColor: list.status === 'Validated' ? '#10B98120' : '#F59E0B20',
-                                color: list.status === 'Validated' ? '#10B981' : '#F59E0B'
-                              }}>
-                                {list.status}
-                              </span>
-                              <button style={{
-                                padding: '8px 16px',
-                                background: '#1F2937',
-                                border: '1px solid #374151',
-                                borderRadius: '6px',
-                                color: '#9CA3AF',
-                                cursor: 'pointer',
-                                fontSize: '13px'
-                              }}>
-                                View Details
-                              </button>
-                              <button style={{
-                                padding: '8px 16px',
-                                background: '#3B82F6',
-                                border: 'none',
-                                borderRadius: '6px',
-                                color: '#FFFFFF',
-                                cursor: 'pointer',
-                                fontSize: '13px',
-                                fontWeight: '500'
-                              }}>
-                                Use in Campaign
-                              </button>
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  </>
-                )}
-
-                {/* CAMPAIGNS TAB */}
-                {activeTab === 'campaigns' && (
-                  <div style={{
-                    background: '#111827',
-                    border: '1px solid #1F2937',
-                    borderRadius: '12px',
-                    padding: '32px'
-                  }}>
-                    <h2 style={{ 
-                      fontSize: '20px',
-                      fontWeight: '600',
-                      margin: '0 0 24px 0',
-                      color: '#FFFFFF'
-                    }}>
-                      Create New Campaign
-                    </h2>
-
-                    {/* Progress Steps */}
-                    <div style={{ 
-                      display: 'flex',
-                      justifyContent: 'space-between',
-                      marginBottom: '40px',
-                      position: 'relative'
-                    }}>
-                      <div style={{
-                        position: 'absolute',
-                        top: '15px',
-                        left: '0',
-                        right: '0',
-                        height: '2px',
-                        background: '#1F2937',
-                        zIndex: 0
-                      }}>
-                        <div style={{
-                          height: '100%',
-                          width: `${((campaignStep - 1) / 3) * 100}%`,
-                          background: '#3B82F6',
-                          transition: 'width 0.3s'
-                        }} />
-                      </div>
-                      
-                      {[
-                        { num: 1, label: 'Select List' },
-                        { num: 2, label: 'Compose Email' },
-                        { num: 3, label: 'Preview & Send' },
-                        { num: 4, label: 'Confirm' }
-                      ].map((step) => (
-                        <div key={step.num} style={{ 
-                          display: 'flex',
-                          flexDirection: 'column',
-                          alignItems: 'center',
-                          flex: 1,
-                          zIndex: 1,
-                          position: 'relative'
-                        }}>
-                          <div style={{
-                            width: '32px',
-                            height: '32px',
-                            borderRadius: '50%',
-                            background: campaignStep >= step.num ? '#3B82F6' : '#1F2937',
-                            color: campaignStep >= step.num ? '#FFFFFF' : '#6B7280',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            fontSize: '14px',
-                            fontWeight: '600',
-                            marginBottom: '8px',
-                            border: `2px solid ${campaignStep >= step.num ? '#3B82F6' : '#374151'}`
-                          }}>
-                            {campaignStep > step.num ? '✓' : step.num}
-                          </div>
-                          <span style={{
-                            fontSize: '13px',
-                            color: campaignStep >= step.num ? '#E5E7EB' : '#6B7280',
-                            fontWeight: '500'
-                          }}>
-                            {step.label}
-                          </span>
-                        </div>
-                      ))}
-                    </div>
-
-                    {/* Step Content */}
-                    {campaignStep === 1 && (
-                      <div>
-                        <h3 style={{ 
-                          fontSize: '16px',
-                          fontWeight: '600',
-                          margin: '0 0 16px 0',
-                          color: '#FFFFFF'
-                        }}>
-                          Select Email List
-                        </h3>
-                        <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', marginBottom: '24px' }}>
-                          {emailLists.filter(l => l.status === 'Validated').map((list) => (
-                            <div
-                              key={list.id}
-                              onClick={() => setSelectedList(list.id)}
-                              style={{
-                                background: selectedList === list.id ? '#1F2937' : '#0A0E1A',
-                                border: selectedList === list.id ? '2px solid #3B82F6' : '1px solid #1F2937',
-                                borderRadius: '8px',
-                                padding: '16px',
-                                cursor: 'pointer',
-                                transition: 'all 0.2s'
-                              }}
-                            >
-                              <div style={{ 
-                                display: 'flex',
-                                justifyContent: 'space-between',
-                                alignItems: 'center'
-                              }}>
-                                <div>
-                                  <div style={{ 
-                                    fontSize: '15px',
-                                    fontWeight: '500',
-                                    color: '#FFFFFF',
-                                    marginBottom: '4px'
-                                  }}>
-                                    {list.name}
-                                  </div>
-                                  <div style={{ 
-                                    fontSize: '13px',
-                                    color: '#9CA3AF'
-                                  }}>
-                                    {list.contacts.toLocaleString()} contacts
-                                  </div>
-                                </div>
-                                <div style={{
-                                  width: '20px',
-                                  height: '20px',
-                                  borderRadius: '50%',
-                                  border: `2px solid ${selectedList === list.id ? '#3B82F6' : '#374151'}`,
-                                  background: selectedList === list.id ? '#3B82F6' : 'transparent',
-                                  display: 'flex',
-                                  alignItems: 'center',
-                                  justifyContent: 'center',
-                                  color: '#FFFFFF',
-                                  fontSize: '12px'
-                                }}>
-                                  {selectedList === list.id && '✓'}
-                                </div>
-                              </div>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    )}
-
-                    {campaignStep === 2 && (
-                      <div>
-                        <h3 style={{ 
-                          fontSize: '16px',
-                          fontWeight: '600',
-                          margin: '0 0 16px 0',
-                          color: '#FFFFFF'
-                        }}>
-                          Compose Your Email
-                        </h3>
-                        
-                        {/* Template Selection */}
-                        <div style={{ marginBottom: '24px' }}>
-                          <label style={{ 
-                            fontSize: '13px',
-                            color: '#9CA3AF',
-                            display: 'block',
-                            marginBottom: '8px'
-                          }}>
-                            Choose Template (Optional)
-                          </label>
-                          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '12px' }}>
-                            {templates.map((template) => (
-                              <div key={template.id} style={{
-                                background: '#0A0E1A',
-                                border: '1px solid #1F2937',
-                                borderRadius: '8px',
-                                padding: '16px',
-                                cursor: 'pointer',
-                                textAlign: 'center'
-                              }}>
-                                <div style={{ 
-                                  width: '100%',
-                                  height: '120px',
-                                  background: '#1F2937',
-                                  borderRadius: '6px',
-                                  marginBottom: '12px',
-                                  display: 'flex',
-                                  alignItems: 'center',
-                                  justifyContent: 'center',
-                                  fontSize: '32px'
-                                }}>
-                                  📧
-                                </div>
-                                <div style={{ 
-                                  fontSize: '14px',
-                                  fontWeight: '500',
-                                  color: '#FFFFFF',
-                                  marginBottom: '4px'
-                                }}>
-                                  {template.name}
-                                </div>
-                                <div style={{ 
-                                  fontSize: '12px',
-                                  color: '#9CA3AF'
-                                }}>
-                                  {template.category}
-                                </div>
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-
-                        {/* Email Fields */}
-                        <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-                          <div>
-                            <label style={{ 
-                              fontSize: '13px',
-                              color: '#9CA3AF',
-                              display: 'block',
-                              marginBottom: '8px'
-                            }}>
-                              Campaign Name
-                            </label>
-                            <input
-                              type="text"
-                              placeholder="e.g., Q1 Investment Update"
-                              style={{
-                                width: '100%',
-                                padding: '12px',
-                                background: '#0A0E1A',
-                                border: '1px solid #1F2937',
-                                borderRadius: '8px',
-                                color: '#E5E7EB',
-                                fontSize: '14px'
-                              }}
-                            />
-                          </div>
-                          
-                          <div>
-                            <label style={{ 
-                              fontSize: '13px',
-                              color: '#9CA3AF',
-                              display: 'block',
-                              marginBottom: '8px'
-                            }}>
-                              Subject Line
-                            </label>
-                            <input
-                              type="text"
-                              placeholder="Enter email subject"
-                              style={{
-                                width: '100%',
-                                padding: '12px',
-                                background: '#0A0E1A',
-                                border: '1px solid #1F2937',
-                                borderRadius: '8px',
-                                color: '#E5E7EB',
-                                fontSize: '14px'
-                              }}
-                            />
-                          </div>
-
-                          <div>
-                            <label style={{ 
-                              fontSize: '13px',
-                              color: '#9CA3AF',
-                              display: 'block',
-                              marginBottom: '8px'
-                            }}>
-                              Email Body
-                            </label>
-                            <textarea
-                              placeholder="Write your email content here..."
-                              rows={10}
-                              style={{
-                                width: '100%',
-                                padding: '12px',
-                                background: '#0A0E1A',
-                                border: '1px solid #1F2937',
-                                borderRadius: '8px',
-                                color: '#E5E7EB',
-                                fontSize: '14px',
-                                fontFamily: 'inherit',
-                                resize: 'vertical'
-                              }}
-                            />
-                          </div>
-                        </div>
-                      </div>
-                    )}
-
-                    {campaignStep === 3 && (
-                      <div>
-                        <h3 style={{ 
-                          fontSize: '16px',
-                          fontWeight: '600',
-                          margin: '0 0 16px 0',
-                          color: '#FFFFFF'
-                        }}>
-                          Preview & Schedule
-                        </h3>
-
-                        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px' }}>
-                          {/* Preview */}
-                          <div>
-                            <div style={{ 
-                              fontSize: '13px',
-                              color: '#9CA3AF',
-                              marginBottom: '12px'
-                            }}>
-                              Email Preview
-                            </div>
-                            <div style={{
-                              background: '#FFFFFF',
-                              borderRadius: '8px',
-                              padding: '24px',
-                              minHeight: '400px'
-                            }}>
-                              <div style={{ color: '#000', fontSize: '14px' }}>
-                                <div style={{ fontWeight: '600', marginBottom: '16px', fontSize: '18px' }}>
-                                  Q1 Investment Update
-                                </div>
-                                <p>Dear Investor,</p>
-                                <p>We're pleased to share our quarterly performance update...</p>
-                                <p style={{ marginTop: '20px' }}>Best regards,<br/>Dalmore Team</p>
-                              </div>
-                            </div>
-                          </div>
-
-                          {/* Settings */}
-                          <div>
-                            <div style={{ 
-                              fontSize: '13px',
-                              color: '#9CA3AF',
-                              marginBottom: '12px'
-                            }}>
-                              Campaign Settings
-                            </div>
-                            <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-                              <div style={{
-                                background: '#0A0E1A',
-                                border: '1px solid #1F2937',
-                                borderRadius: '8px',
-                                padding: '16px'
-                              }}>
-                                <div style={{ 
-                                  fontSize: '13px',
-                                  color: '#9CA3AF',
-                                  marginBottom: '8px'
-                                }}>
-                                  Recipients
-                                </div>
-                                <div style={{ 
-                                  fontSize: '20px',
-                                  fontWeight: '600',
-                                  color: '#FFFFFF'
-                                }}>
-                                  1,820 contacts
-                                </div>
-                              </div>
-
-                              <div>
-                                <label style={{ 
-                                  fontSize: '13px',
-                                  color: '#9CA3AF',
-                                  display: 'block',
-                                  marginBottom: '8px'
-                                }}>
-                                  Send Time
-                                </label>
-                                <select style={{
-                                  width: '100%',
-                                  padding: '12px',
-                                  background: '#0A0E1A',
-                                  border: '1px solid #1F2937',
-                                  borderRadius: '8px',
-                                  color: '#E5E7EB',
-                                  fontSize: '14px'
-                                }}>
-                                  <option>Send immediately</option>
-                                  <option>Schedule for later</option>
-                                </select>
-                              </div>
-
-                              <div>
-                                <label style={{ 
-                                  fontSize: '13px',
-                                  color: '#9CA3AF',
-                                  display: 'flex',
-                                  alignItems: 'center',
-                                  gap: '8px',
-                                  cursor: 'pointer'
-                                }}>
-                                  <input type="checkbox" />
-                                  Track opens and clicks
-                                </label>
-                              </div>
-
-                              <div>
-                                <label style={{ 
-                                  fontSize: '13px',
-                                  color: '#9CA3AF',
-                                  display: 'flex',
-                                  alignItems: 'center',
-                                  gap: '8px',
-                                  cursor: 'pointer'
-                                }}>
-                                  <input type="checkbox" />
-                                  Send test email to myself
-                                </label>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    )}
-
-                    {campaignStep === 4 && (
-                      <div style={{ textAlign: 'center', padding: '40px 0' }}>
-                        <div style={{ fontSize: '64px', marginBottom: '24px' }}>✅</div>
-                        <h3 style={{ 
-                          fontSize: '24px',
-                          fontWeight: '600',
-                          margin: '0 0 12px 0',
-                          color: '#FFFFFF'
-                        }}>
-                          Campaign Sent Successfully!
-                        </h3>
-                        <p style={{ 
-                          margin: '0 0 32px 0',
-                          color: '#9CA3AF',
-                          fontSize: '14px'
-                        }}>
-                          Your email campaign has been sent to 1,820 recipients.
-                        </p>
-                        <button
-                          onClick={() => setActiveTab('overview')}
-                          style={{
-                            padding: '12px 24px',
-                            backgroundColor: '#3B82F6',
-                            color: 'white',
-                            border: 'none',
-                            borderRadius: '8px',
-                            cursor: 'pointer',
-                            fontSize: '14px',
-                            fontWeight: '500'
-                          }}
-                        >
-                          View Analytics
-                        </button>
-                      </div>
-                    )}
-
-                    {/* Navigation Buttons */}
-                    {campaignStep < 4 && (
-                      <div style={{ 
-                        display: 'flex',
-                        justifyContent: 'space-between',
-                        marginTop: '32px',
-                        paddingTop: '24px',
-                        borderTop: '1px solid #1F2937'
-                      }}>
-                        <button
-                          onClick={() => setCampaignStep(Math.max(1, campaignStep - 1))}
-                          disabled={campaignStep === 1}
-                          style={{
-                            padding: '10px 24px',
-                            background: campaignStep === 1 ? '#0A0E1A' : '#1F2937',
-                            border: '1px solid #374151',
-                            borderRadius: '8px',
-                            color: campaignStep === 1 ? '#6B7280' : '#E5E7EB',
-                            cursor: campaignStep === 1 ? 'not-allowed' : 'pointer',
-                            fontSize: '14px',
-                            fontWeight: '500'
-                          }}
-                        >
-                          ← Back
-                        </button>
-                        <button
-                          onClick={() => setCampaignStep(Math.min(4, campaignStep + 1))}
-                          disabled={campaignStep === 1 && !selectedList}
-                          style={{
-                            padding: '10px 24px',
-                            backgroundColor: (campaignStep === 1 && !selectedList) ? '#1F2937' : '#3B82F6',
-                            color: 'white',
-                            border: 'none',
-                            borderRadius: '8px',
-                            cursor: (campaignStep === 1 && !selectedList) ? 'not-allowed' : 'pointer',
-                            fontSize: '14px',
-                            fontWeight: '500'
-                          }}
-                        >
-                          {campaignStep === 3 ? 'Send Campaign' : 'Continue →'}
-                        </button>
-                      </div>
-                    )}
-                  </div>
-                )}
-
-                {/* SETTINGS TAB */}
-                {activeTab === 'settings' && (
-                  <div style={{
-                    background: '#111827',
-                    border: '1px solid #1F2937',
-                    borderRadius: '12px',
-                    padding: '32px'
-                  }}>
-                    <h2 style={{ 
-                      fontSize: '20px',
-                      fontWeight: '600',
-                      margin: '0 0 24px 0',
-                      color: '#FFFFFF'
-                    }}>
-                      Email Marketing Settings
-                    </h2>
-
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
-                      {/* Sender Information */}
-                      <div>
-                        <h3 style={{ 
-                          fontSize: '16px',
-                          fontWeight: '600',
-                          margin: '0 0 16px 0',
-                          color: '#FFFFFF'
-                        }}>
-                          Sender Information
-                        </h3>
-                        <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-                          <div>
-                            <label style={{ 
-                              fontSize: '13px',
-                              color: '#9CA3AF',
-                              display: 'block',
-                              marginBottom: '8px'
-                            }}>
-                              From Name
-                            </label>
-                            <input
-                              type="text"
-                              placeholder="Dalmore"
-                              style={{
-                                width: '100%',
-                                padding: '12px',
-                                background: '#0A0E1A',
-                                border: '1px solid #1F2937',
-                                borderRadius: '8px',
-                                color: '#E5E7EB',
-                                fontSize: '14px'
-                              }}
-                            />
-                          </div>
-                          <div>
-                            <label style={{ 
-                              fontSize: '13px',
-                              color: '#9CA3AF',
-                              display: 'block',
-                              marginBottom: '8px'
-                            }}>
-                              From Email
-                            </label>
-                            <input
-                              type="email"
-                              placeholder="noreply@dalmore.com"
-                              style={{
-                                width: '100%',
-                                padding: '12px',
-                                background: '#0A0E1A',
-                                border: '1px solid #1F2937',
-                                borderRadius: '8px',
-                                color: '#E5E7EB',
-                                fontSize: '14px'
-                              }}
-                            />
-                          </div>
-                          <div>
-                            <label style={{ 
-                              fontSize: '13px',
-                              color: '#9CA3AF',
-                              display: 'block',
-                              marginBottom: '8px'
-                            }}>
-                              Reply-To Email
-                            </label>
-                            <input
-                              type="email"
-                              placeholder="support@dalmore.com"
-                              style={{
-                                width: '100%',
-                                padding: '12px',
-                                background: '#0A0E1A',
-                                border: '1px solid #1F2937',
-                                borderRadius: '8px',
-                                color: '#E5E7EB',
-                                fontSize: '14px'
-                              }}
-                            />
-                          </div>
-                        </div>
-                      </div>
-
-                      {/* Email Integrations */}
-                      <div>
-                        <h3 style={{ 
-                          fontSize: '16px',
-                          fontWeight: '600',
-                          margin: '0 0 16px 0',
-                          color: '#FFFFFF'
-                        }}>
-                          Email Service Integration
-                        </h3>
-                        <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-                          {['Raisy', 'SendGrid', 'Mailchimp', 'AWS SES'].map((service) => (
-                            <div key={service} style={{
-                              background: '#0A0E1A',
-                              border: '1px solid #1F2937',
-                              borderRadius: '8px',
-                              padding: '16px',
-                              display: 'flex',
-                              justifyContent: 'space-between',
-                              alignItems: 'center'
-                            }}>
-                              <div>
-                                <div style={{ 
-                                  fontSize: '15px',
-                                  fontWeight: '500',
-                                  color: '#FFFFFF',
-                                  marginBottom: '4px'
-                                }}>
-                                  {service}
-                                </div>
-                                <div style={{ 
-                                  fontSize: '13px',
-                                  color: '#9CA3AF'
-                                }}>
-                                  {service === 'Raisy' ? 'Connected' : 'Not connected'}
-                                </div>
-                              </div>
-                              <button style={{
-                                padding: '8px 16px',
-                                background: service === 'Raisy' ? '#10B98120' : '#3B82F6',
-                                border: 'none',
-                                borderRadius: '6px',
-                                color: service === 'Raisy' ? '#10B981' : '#FFFFFF',
-                                cursor: 'pointer',
-                                fontSize: '13px',
-                                fontWeight: '500'
-                              }}>
-                                {service === 'Raisy' ? 'Disconnect' : 'Connect'}
-                              </button>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-
-                      {/* Preferences */}
-                      <div>
-                        <h3 style={{ 
-                          fontSize: '16px',
-                          fontWeight: '600',
-                          margin: '0 0 16px 0',
-                          color: '#FFFFFF'
-                        }}>
-                          Email Preferences
-                        </h3>
-                        <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-                          <label style={{ 
-                            fontSize: '13px',
-                            color: '#E5E7EB',
-                            display: 'flex',
-                            alignItems: 'center',
-                            gap: '8px',
-                            cursor: 'pointer'
-                          }}>
-                            <input type="checkbox" defaultChecked />
-                            Track email opens
-                          </label>
-                          <label style={{ 
-                            fontSize: '13px',
-                            color: '#E5E7EB',
-                            display: 'flex',
-                            alignItems: 'center',
-                            gap: '8px',
-                            cursor: 'pointer'
-                          }}>
-                            <input type="checkbox" defaultChecked />
-                            Track link clicks
-                          </label>
-                          <label style={{ 
-                            fontSize: '13px',
-                            color: '#E5E7EB',
-                            display: 'flex',
-                            alignItems: 'center',
-                            gap: '8px',
-                            cursor: 'pointer'
-                          }}>
-                            <input type="checkbox" defaultChecked />
-                            Include unsubscribe link
-                          </label>
-                          <label style={{ 
-                            fontSize: '13px',
-                            color: '#E5E7EB',
-                            display: 'flex',
-                            alignItems: 'center',
-                            gap: '8px',
-                            cursor: 'pointer'
-                          }}>
-                            <input type="checkbox" />
-                            Send copy to admin
-                          </label>
-                        </div>
-                      </div>
-
-                      {/* Save Button */}
-                      <div style={{ paddingTop: '24px', borderTop: '1px solid #1F2937' }}>
-                        <button style={{
-                          padding: '12px 24px',
-                          backgroundColor: '#3B82F6',
-                          color: 'white',
-                          border: 'none',
-                          borderRadius: '8px',
-                          cursor: 'pointer',
-                          fontSize: '14px',
-                          fontWeight: '500'
-                        }}>
-                          Save Settings
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                )}
+            <a href="contact-us.html">
+              <div class="row menu-headings-row" data-magnetic data-cursor="-opaque -md">
+                <div class="col-1 pl-0">
+                  <p class="p-12 font-bold">05.</p>
+                </div>
+                <div class="col-10 h4">Contact Us</div>
+                <div class="col-push-1 float-right ml-auto">
+                  <img src="Assets/Images/Home/arrow-left.svg" alt="arrow-left" />
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+        <div class="row menu-bottom">
+          <div class="col-xs-12 col-sm-5 pl-sm-0">
+            <div class="row">
+              <a href="https://www.linkedin.com/in/hafixadnan/" target="_blank">
+                <div class="col-sm-1 col-md-1 col-2" data-cursor="-opaque">
+                  <p class="p-12">LN</p>
+                </div>
+              </a>
+              <div class="col-sm-3 col-md-4 col-4" data-cursor="-opaque">
+                <p class="p-12" style="opacity: 0.5">- Connect</p>
               </div>
             </div>
-          );
-        };
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        ReactDOM.render(<EmailMarketing />, document.getElementById('root'));
-    </script>
+  <!-- services section is starting here -->
+  <section>
+    <div class="container mp-25">
+      <div class="row services">
+        <div class="col-md-3 padding-t">
+          <a href="#">
+            <div class="inline-for-mob menu-headings-row">
+              <p class="services-numbering">01.</p>
+              <h6 class="h6">Branding & Strategy</h6>
+            </div>
+            <p class="pt-lg-3 services-p">
+              Crafting comprehensive branding and strategy solutions that
+              empower businesses to establish a unique identity, connect with
+              their target audience, and drive long-term success in the
+              market.
+            </p>
+          </a>
+        </div>
+
+        <div class="col-md-3 padding-t">
+          <a href="#">
+            <div class="inline-for-mob menu-headings-row">
+              <p class="services-numbering">02.</p>
+              <h6 class="h6">UI Design</h6>
+            </div>
+            <p class="pt-lg-3 services-p">
+              As a User Interface Designer, my goal is to create intuitive interfaces through extensive user research
+              and testing. I employ design principles to develop logical and predictable flows that feel natural.
+              Wireframing and prototyping allow me to refine designs based on user needs.
+            </p>
+          </a>
+        </div>
+        <div class="col-md-3 padding-t">
+          <a href="#">
+            <div class="inline-for-mob menu-headings-row">
+              <p class="services-numbering">03.</p>
+              <h6 class="h6">UX Design</h6>
+            </div>
+            <p class="pt-lg-3 services-p">
+              User experience design is at the core of everything I do. My design process focuses on gaining a deep
+              understanding of end users through extensive research, including interviews, surveys, personas, user
+              journey mapping, and usability testing.
+            </p>
+          </a>
+        </div>
+        <div class="col-md-3 padding-t">
+          <a href="#">
+            <div class="inline-for-mob menu-headings-row">
+              <p class="services-numbering">04.</p>
+              <h6 class="h6">Interaction Design</h6>
+            </div>
+            <p class="pt-lg-3 services-p">
+              Crafting smooth user-product interactions for seamless usability and satisfaction. It involves creating
+              products that enable users to achieve their objectives in the best way possible, fostering a delightful
+              and intuitive experience.
+            </p>
+          </a>
+          <!-- </div>
+        <div class="col-md-3 padding-t">
+          <a href="digital-design.html">
+            <div class="inline-for-mob menu-headings-row">
+              <p class="services-numbering">02.</p>
+              <h6 class="h6">UI Design</h6>
+            </div>
+            <p class="pt-lg-3 services-p">
+              As a User Interface Designer, my goal is to create intuitive interfaces through extensive user research
+              and testing. I employ design principles to develop logical and predictable flows that feel natural.
+              Wireframing and prototyping allow me to refine designs based on user needs.
+            </p>
+          </a>
+        </div>
+        <div class="col-md-3 padding-t" >
+          <a href="mobile-development.html">
+            <div class="inline-for-mob menu-headings-row">
+              <p class="services-numbering">03.</p>
+              <h6 class="h6">UX Design</h6>
+            </div>
+            <p class="pt-lg-3 services-p">
+              User experience design is at the core of everything I do. My design process focuses on gaining a deep
+              understanding of end users through extensive research, including interviews, surveys, personas, user
+              journey mapping, and usability testing.
+            </p>
+          </a>
+        </div> 
+        <div class="col-md-3"></div>
+      </div>
+      <div class="row bottom-services">
+        <div class="col-md-3"></div>
+        <div class="col-md-3 padding-t">
+          <a href="web-development.html">
+            <div class="inline-for-mob menu-headings-row">
+              <p class="services-numbering">04.</p>
+              <h6 class="h6">Interaction Desgin</h6>
+            </div>
+            <p class="pt-lg-3 services-p">
+              Expert interaction design is crucial for creating digital products and services that engage users in a
+              seamless, intuitive manner. My interaction design services focus on crafting experiences that enable users
+              to achieve their goals efficiently
+            </p>
+          </a>
+        </div>
+        <div class="col-md-3 padding-t">
+          <a href="blockchain.html">
+            <div class="inline-for-mob menu-headings-row">
+              <p class="services-numbering">05.</p>
+              <h6 class="h6">UX Researcher</h6>
+            </div>
+            <p class="pt-lg-3 services-p">
+              As a UX researcher, I employ a diverse range of qualitative and quantitative methods to uncover actionable
+              user insights that guide the design of intuitive, user-centered digital experiences.
+            </p>
+          </a>
+        </div> -->
+          <!-- <div class="col-md-3 padding-t">
+            <div class="inline-for-mob">
+              <p class="services-numbering">06.</p>
+              <h6 class="h6">Cloud Governance</h6>
+            </div>
+            <p class="pt-lg-3 services-p">
+              Ensuring risk free cloud adoption with cost-effective infra
+              structure, business agility, process efficiency, and higher
+              productivity.
+            </p>
+          </div> 
+      </div> -->
+    </div>
+  </div>
+</section>
+  <!-- services section is ending here -->
+
+  <!--section of slider is starting-->
+  <!--slider for laptops -->
+  <div class="bg-black desktop-only">
+    <section class="container mp-25 working-projects cursor-pointer p-top">
+      <!-- <div class="slider-section container-fluid desktop-only" data-cursor="-color-red">
+            <div class="philosophie bg-black">
+                <div class="wrapper">
+                    <div class="point">
+                        <div class="split left">
+                            <article class="centered">
+                                <small class="slider-text-numbering">01.</small>
+                                <h2 class="slider-heading mega-heading">Aesop</h2>
+                            </article>
+                        </div>
+                        <div class="split right">
+                            <img class="slider-image" data-cursor-text="View Case" data-cursor="-color-accent-lilac"
+                                src="./Assets/Images/Branding/works1.png" alt="random" />
+                        </div>
+                    </div>
+                    <div class="point">
+                        <div class="split left">
+                            <article class="centered">
+                                <small class="slider-text-numbering">01.</small>
+                                <h2 class="slider-heading mega-heading">Aesop</h2>
+                            </article>
+                        </div>
+                        <div class="split right">
+                            <img class="slider-image" data-cursor-text="View Case" data-cursor="-color-accent-lilac"
+                                src="./Assets/Images/Branding/works2.png" alt="random" />
+                        </div>
+                    </div>
+                    <div class="point">
+                        <div class="split left">
+                            <article class="centered">
+                                <small class="slider-text-numbering">01.</small>
+                                <h2 class="slider-heading mega-heading">Aesop</h2>
+                            </article>
+                        </div>
+                        <div class="split right">
+                            <img class="slider-image" data-cursor-text="View Case" data-cursor="-color-accent-lilac"
+                                src="./Assets/Images/AllProjects/Vogue.png" alt="random" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container mp-25">
+                <div class="row pb-3">
+                    <div class="col-md-6">
+                        <div class="orange-hover">
+                            <small class="slider-text-numbering">01.</small>
+                            <h2 class="slider-heading mega-heading">Aesop</h2>
+                        </div>
+                        <div class="orange-hover">
+                            <small class="slider-text-numbering">02.</small>
+                            <h2 class="slider-heading mega-heading">Vogue</h2>
+                        </div>
+                        <div class="orange-hover">
+                            <small class="slider-text-numbering">03.</small>
+                            <h2 class="slider-heading mega-heading">Mercedes</h2>
+                        </div>
+                        <div class="orange-hover">
+                            <small class="slider-text-numbering">04.</small>
+                            <h2 class="slider-heading mega-heading">Korres</h2>
+                        </div>
+                        <div class="orange-hover">
+                            <small class="slider-text-numbering">05.</small>
+                            <h2 class="slider-heading mega-heading">Winery</h2>
+                        </div>
+                        <div class="orange-hover">
+                            <small class="slider-text-numbering">06.</small>
+                            <h2 class="slider-heading mega-heading">Aesop</h2>
+                        </div>
+                        <div class="orange-hover">
+                            <small class="slider-text-numbering">07.</small>
+                            <h2 class="slider-heading mega-heading">Colle House</h2>
+                        </div>
+                        <div class="orange-hover">
+                            <small class="slider-text-numbering">08.</small>
+                            <h2 class="slider-heading mega-heading">Phaedra</h2>
+                        </div>
+                        <div class="orange-hover">
+                            <small class="slider-text-numbering">09.</small>
+                            <h2 class="slider-heading mega-heading">Mitzie</h2>
+                        </div>
+                    </div>
+                    <div class="col-md-6 centerlised">
+                        <img class="slider-image" src="./Assets/Images/Home/slider-image.png" alt="">
+                    </div>
+                </div>
+            </div>
+
+        </div> -->
+      <!-- <div id="navbar-example">
+        <ul class="nav nav-tabs" role="tablist">
+          <div id="list-example" class="list-group">
+            <a
+              class="list-group-item list-group-item-action"
+              href="#list-item-1"
+            >
+              Item 1
+            </a>
+            <a
+              class="list-group-item list-group-item-action"
+              href="#list-item-2"
+            >
+              Item 2
+            </a>
+            <a
+              class="list-group-item list-group-item-action"
+              href="#list-item-3"
+            >
+              Item 3
+            </a>
+            <a
+              class="list-group-item list-group-item-action"
+              href="#list-item-4"
+            >
+              Item 4
+            </a>
+          </div>
+          <div
+            data-bs-spy="scroll"
+            data-bs-target="#list-example"
+            data-bs-offset="0"
+            class="scrollspy-example"
+            tabindex="0"
+          >
+            <h4 id="list-item-1">Item 1</h4>
+
+            <a href="./viveprinting.html">
+              <img
+                class="blogs-img wh-445"
+                data-cursor-text="View Case"
+                src="./Assets/Images/Home/PASHA_1.webp"
+                alt="pasha"
+              />
+            </a>
+
+            <h4 id="list-item-2">Item 2</h4>
+
+            <a href="./viveprinting.html">
+              <img
+                class="blogs-img wh-445"
+                data-cursor-text="View Case"
+                src="./Assets/Images/Home/PASHA_1.webp"
+                alt="pasha"
+              />
+            </a>
+
+            <h4 id="list-item-3">Item 3</h4>
+
+            <a href="./viveprinting.html">
+              <img
+                class="blogs-img wh-445"
+                data-cursor-text="View Case"
+                src="./Assets/Images/Home/PASHA_1.webp"
+                alt="pasha"
+              />
+            </a>
+
+            <h4 id="list-item-4">Item 4</h4>
+
+            <a href="./viveprinting.html">
+              <img
+                class="blogs-img wh-445"
+                data-cursor-text="View Case"
+                src="./Assets/Images/Home/PASHA_1.webp"
+                alt="pasha"
+              />
+            </a>
+          </div>
+        </ul>
+      </div> -->
+
+
+      <div style="padding: 100px 0px 100px 0px;">
+        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style="padding-left: 160px;">
+          <ol class="carousel-indicators">
+            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
+          </ol>
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <div class="d-flex">
+                <div class="d-block col-5">
+                  <div class="">
+                    <span class="slider-headings current-slide" id="1">
+                      <small>01.</small>
+                      My Custom packaging
+                    </span>
+                  </div>
+                  <div class="">
+                    <span class="slider-heading-brown" id="2">
+                      <small>02.</small>
+                      Car Wash
+                    </span>
+                  </div>
+                  <div class="">
+                    <span class="slider-heading-brown" id="2">
+                      <small>03.</small>
+                      WMR App
+                    </span>
+                  </div>
+                  <div class="">
+                    <span class="slider-heading-brown" id="2">
+                      <small>04.</small>
+                      shrturls
+                    </span>
+                  </div>
+                  <div class="">
+                    <span class="slider-heading-brown" id="2">
+                      <small>05.</small>
+                      PDF Suite
+                    </span>
+                  </div>
+                </div>
+                <a href="mycustompackaging.html">
+                  <img data-cursor-text="View Case" class="blogs-img wh-445" src="Assets/Images/Home/PASHA_1.jpg"
+                    alt="pasha" style="padding-left: 30px;" />
+                </a>
+              </div>
+
+            </div>
+            <div class="carousel-item">
+              <div class="d-flex">
+                <div class="d-block col-5">
+                  <div class="">
+                    <span class="slider-heading-brown" id="1">
+                      <small>01.</small>
+                      My Custom Packaging
+                    </span>
+                  </div>
+                  <div class="">
+                    <span class="slider-headings current-slide" id="2">
+                      <small>02.</small>
+                      Car Wash
+                    </span>
+                  </div>
+                  <div class="">
+                    <span class="slider-heading-brown" id="3">
+                      <small>03.</small>
+                      WMR App
+                    </span>
+                  </div>
+                  <div class="">
+                    <span class="slider-heading-brown" id="4">
+                      <small>04.</small>
+                      shrturls
+                    </span>
+                  </div>
+                  <div class="">
+                    <span class="slider-heading-brown" id="5">
+                      <small>05.</small>
+                      PDF Suite
+                    </span>
+                  </div>
+                </div>
+                <a href="Carwash App.html">
+                  <img data-cursor-text="View Case" class="blogs-img wh-445" src="Assets/Images/Home/Carwash.jpg"
+                    alt="carmate" style="padding-left: 30px;" />
+                </a>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="d-flex">
+                <div class="d-block col-5">
+                  <div class="">
+                    <span class="slider-heading-brown" id="1">
+                      <small>01.</small>
+                      My Custom Packaging
+                  </div>
+                  <div class="">
+                    <span class="slider-heading-brown" id="2">
+                      <small>02.</small>
+                      Car Wash
+                    </span>
+                  </div>
+                  <div class="">
+                    <span class="slider-headings current-slide" id="3">
+                      <small>03.</small>
+                      WMR App
+                    </span>
+                  </div>
+                  <div class="">
+                    <span class="slider-heading-brown" id="4">
+                      <small>04.</small>
+                      shrturls
+                    </span>
+                  </div>
+                  <div class="">
+                    <span class="slider-heading-brown" id="5">
+                      <small>05.</small>
+                      PDF Suite
+                    </span>
+                  </div>
+                </div>
+                <a href="wmr.html">
+                  <img data-cursor-text="View Case" class="blogs-img wh-445" src="Assets/Images/Home/wmr.jpg"
+                    alt="jom-mart" style="padding-left: 30px;" />
+                </a>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="d-flex">
+                <div class="d-block col-5">
+                  <div class="">
+                    <span class="slider-heading-brown" id="1">
+                      <small>01.</small>
+                      My Custom Packaging
+                    </span>
+                  </div>
+                  <div class="">
+                    <span class="slider-heading-brown" id="2">
+                      <small>02.</small>
+                      Car Wash
+                    </span>
+                  </div>
+                  <div class="">
+                    <span class="slider-heading-brown" id="3">
+                      <small>03.</small>
+                      WMR App
+                    </span>
+                  </div>
+                  <div class="">
+                    <span class="slider-headings current-slide" id="4">
+                      <small>04.</small>
+                      shrturls
+                    </span>
+                  </div>
+                  <div class="">
+                    <span class="slider-heading-brown" id="5">
+                      <small>05.</small>
+                      PDF Suite
+                    </span>
+                  </div>
+                </div>
+                <a href="Shrtsurl.html">
+                  <img data-cursor-text="View Case" class="blogs-img wh-445" src="Assets/Images/Home/dashboard.webp"
+                    alt="playpal" style="padding-left: 30px;" />
+                </a>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="d-flex">
+                <div class="d-block col-5">
+                  <div class="">
+                    <span class="slider-heading-brown" id="1">
+                      <small>01.</small>
+                      My Custom Packaging
+                  </div>
+                  <div class="">
+                    <span class="slider-heading-brown" id="2">
+                      <small>02.</small>
+                      Car Wash
+                    </span>
+                  </div>
+                  <div class="">
+                    <span class="slider-heading-brown" id="3">
+                      <small>03.</small>
+                      WMR App
+                    </span>
+                  </div>
+                  <div class="">
+                    <span class="slider-heading-brown" id="4">
+                      <small>04.</small>
+                      dashboard
+                    </span>
+                  </div>
+                  <div class="">
+                    <span class="slider-headings current-slide" id="5">
+                      <small>05.</small>
+                      PDF Suite
+                    </span>
+                  </div>
+                </div>
+                <a href="Pdf Scanner.html">
+                  <img data-cursor-text="View Case" class="blogs-img wh-445" src="Assets/Images/Home/Pdf reader.jpg"
+                    alt="vmd" style="padding-left: 30px;" />
+                </a>
+              </div>
+            </div>
+          </div>
+          <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+      </div>
+      <!-- <section class="philosophie desktop-only" data-cursor="-color-red">
+        <div class="wrapper">
+          <div class="indicators">
+            <div class="indicator"></div>
+            <div class="indicator"></div>
+            <div class="indicator"></div>
+          </div>
+          <div class="point">
+            <div class="split left">
+              <article class="centered">
+                <div class="feature-chat-text-2">
+                  <p style="text-align: initial">
+                    <span class="slider-headings current-slide" id="1">
+                      <small>01.</small>
+                      Pasha Fabrics
+                    </span>
+                    <span class="slider-headings" id="2">
+                      <small>02.</small>
+                      Carrmate
+                    </span>
+                    <span class="slider-headings" id="3">
+                      <small>03.</small>
+                      Jom Mart
+                    </span>
+                    <span class="slider-headings" id="4">
+                      <small>04.</small>
+                      Playpal
+                    </span>
+                    <span class="slider-headings" id="5">
+                      <small>05.</small>
+                      VirtualMD
+                    </span>
+                  </p>
+                </div>
+              </article>
+            </div>
+            <div class="split right">
+              <a href="./viveprinting.html">
+                <img
+                  class="blogs-img wh-445"
+                  data-cursor-text="View Case"
+                  src="./Assets/Images/Home/PASHA_1.webp"
+                  alt="pasha"
+                />
+              </a>
+            </div>
+          </div>
+          <div class="point">
+            <div class="split left">
+              <article class="centered">
+                <div class="feature-chat-text-2">
+                  <p style="text-align: initial">
+                    <span class="slider-headings" id="01">
+                      <small>01.</small>
+                      Pasha Fabrics
+                    </span>
+                    <span class="slider-headings current-slide" id="02">
+                      <small>02.</small>
+                      Carrmate
+                    </span>
+                    <span class="slider-headings" id="03">
+                      <small>03.</small>
+                      Jom Mart
+                    </span>
+                    <span class="slider-headings" id="04">
+                      <small>04.</small>
+                      Playpal
+                    </span>
+                    <span class="slider-headings" id="05">
+                      <small>05.</small>
+                      VirtualMD
+                    </span>
+                  </p>
+                </div>
+              </article>
+            </div>
+            <div class="split right">
+              <a href="./carr-mate.html">
+                <img
+                  class="blogs-img wh-445"
+                  data-cursor-text="View Case"
+                  src="./Assets/Images/Home/carrmate.avif"
+                  alt="carmate"
+                />
+              </a>
+            </div>
+          </div>
+          <div class="point">
+            <div class="split left">
+              <article class="centered">
+                <div class="feature-chat-text-2">
+                  <p style="text-align: initial">
+                    <span class="slider-headings" id="001">
+                      <small>01.</small>
+                      Pasha Fabrics
+                    </span>
+                    <span class="slider-headings" id="002">
+                      <small>02.</small>
+                      Carrmate
+                    </span>
+                    <span class="slider-headings current-slide" id="003">
+                      <small>03.</small>
+                      Jom Mart
+                    </span>
+                    <span class="slider-headings" id="004">
+                      <small>04.</small>
+                      Playpal
+                    </span>
+                    <span class="slider-headings" id="005">
+                      <small>05.</small>
+                      VirtualMD
+                    </span>
+                  </p>
+                </div>
+              </article>
+            </div>
+            <div class="split right">
+              <a href="./jom-mart.html">
+                <img
+                  class="blogs-img wh-445"
+                  data-cursor-text="View Case"
+                  src="./Assets/Images/Home/JOM_Mart.webp"
+                  alt="JOM Mart"
+                />
+              </a>
+            </div>
+          </div>
+          <div class="point">
+            <div class="split left">
+              <article class="centered">
+                <div class="feature-chat-text-2">
+                  <p style="text-align: initial">
+                    <span class="slider-headings" id="0001">
+                      <small>01.</small>
+                      Pasha Fabrics
+                    </span>
+                    <span class="slider-headings" id="0002">
+                      <small>02.</small>
+                      Carrmate
+                    </span>
+                    <span class="slider-headings" id="0003">
+                      <small>03.</small>
+                      Jom Mart
+                    </span>
+                    <span class="slider-headings current-slide" id="0004">
+                      <small>04.</small>
+                      Playpal
+                    </span>
+                    <span class="slider-headings" id="0005">
+                      <small>05.</small>
+                      VirtualMD
+                    </span>
+                  </p>
+                </div>
+              </article>
+            </div>
+            <div class="split right">
+              <a href="./playpal.html">
+                <img
+                  class="blogs-img wh-445"
+                  data-cursor-text="View Case"
+                  src="./Assets/Images/Home/playpal.webp"
+                  alt="playpal"
+                />
+              </a>
+            </div>
+          </div>
+          <div class="point">
+            <div class="split left">
+              <article class="centered">
+                <div class="feature-chat-text-2">
+                  <p style="text-align: initial">
+                    <span class="slider-headings" id="00001">
+                      <small>01.</small>
+                      Pasha Fabrics
+                    </span>
+                    <span class="slider-headings" id="00002">
+                      <small>02.</small>
+                      Carrmate
+                    </span>
+                    <span class="slider-headings" id="00003">
+                      <small>03.</small>
+                      Jom Mart
+                    </span>
+                    <span class="slider-headings" id="00004">
+                      <small>04.</small>
+                      Playpal
+                    </span>
+                    <span class="slider-headings current-slide" id="00005">
+                      <small>05.</small>
+                      VirtualMD
+                    </span>
+                  </p>
+                </div>
+              </article>
+            </div>
+            <div class="split right">
+              <a href="./vmd.html">
+                <img
+                  class="blogs-img wh-445"
+                  data-cursor-text="View Case"
+                  src="./Assets/Images/Home/vmd.webp"
+                  alt="vmd"
+                />
+              </a>
+            </div>
+          </div>
+          <div class="point">
+                    <div class="split left">
+                        <article class="centered">
+                            <div class="feature-chat-text-2">
+                                <p style="text-align: initial;">
+                                    <span class="slider-headings" id="000001"><small>01.</small>Pasha Fabrics</span>
+                                        <span class="slider-headings" id="000002"><small>02.</small>Carrmate</span>
+                                            <span class="slider-headings" id="000003"><small>03.</small>Jom Mart</span>
+                                                <span class="slider-headings" id="000004"><small>04.</small>Playpal</span>
+                                                    <span class="slider-headings" id="000005"><small>05.</small>VirtualMD</span>
+                                                     
+                                </p>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="split right">
+                        <img class="blogs-img wh-445" data-cursor-text="View Case"
+                            src="./Assets/Images/Home/pricing-fixed-price.png" alt="">
+                    </div>
+                </div>
+                <div class="point">
+                    <div class="split left">
+                        <article class="centered">
+                            <div class="feature-chat-text-2">
+                                <p style="text-align: initial;">
+                                    <span class="slider-headings" id="0000001"><small>01.</small>Pasha Fabrics</span>
+                                        <span class="slider-headings" id="0000002"><small>02.</small>Carrmate</span>
+                                            <span class="slider-headings" id="0000003"><small>03.</small>Jom Mart</span>
+                                                <span class="slider-headings" id="0000004"><small>04.</small>Playpal</span>
+                                                    <span class="slider-headings" id="0000005"><small>05.</small>VirtualMD</span>
+                                                     
+                                </p>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="split right">
+                        <img class="blogs-img wh-445" data-cursor-text="View Case" src="./Assets/Images/Home/slider-image.png"
+                            alt="">
+                    </div>
+                </div>
+                <div class="point">
+                    <div class="split left">
+                        <article class="centered">
+                            <div class="feature-chat-text-2">
+                                <p style="text-align: initial;">
+                                    <span class="slider-headings" id="00000001"><small>01.</small>Pasha Fabrics</span>
+                                        <span class="slider-headings" id="00000002"><small>02.</small>Carrmate</span>
+                                            <span class="slider-headings" id="00000003"><small>03.</small>Jom Mart</span>
+                                                <span class="slider-headings" id="00000004"><small>04.</small>Playpal</span>
+                                                    <span class="slider-headings" id="00000005"><small>05.</small>VirtualMD</span>
+                                                      
+
+                                </p>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="split right">
+                        <img class="blogs-img wh-445" data-cursor-text="View Case"
+                            src="./Assets/Images/Home/pricing-dedicated-teams.png" alt="">
+                    </div>
+                  </div> -->
+  </div>
+</section>
+<!-- slider for mobiles -->
+      <div class="container mp-25 tm-only slider-section-tm">
+        <div class="row">
+          <div class="col-md-4 col-sm-3">
+            <a href="mycustompackaging.html">
+              <img class="blogs-img wh-445" data-cursor-text="View Case" src="Assets/Images/Home/PASHA_1.webp"
+                alt="pasha" />
+            </a>
+            <div class="color-orange">
+              <small class="slider-text-numbering">01.</small>
+              <h2 style="padding: 20px 0px 64px 16px; font-size: 40px;" class="mega-heading">My Custom Packaging</h2>
+            </div>
+          </div>
+          <div class="col-md-4 coll-sm-3">
+            <a href="Carwash App.html">
+              <img class="blogs-img wh-445" data-cursor-text="View Case" src="Assets/Images/Home/Carwash.jpg"
+                alt="carmate" />
+            </a>
+            <div class="color-orange">
+              <small class="slider-text-numbering">02.</small>
+              <h2 style="padding: 20px 0px 64px 16px; font-size: 40px;" class="mega-heading">Car Wash</h2>
+            </div>
+          </div>
+          <div class="col-md-4 col-sm-3">
+            <a href="wmr.html">
+              <img class="blogs-img wh-445" data-cursor-text="View Case" src="Assets/Images/Home/wmr.jpg"
+                alt="JOM Mart" />
+            </a>
+            <div class="color-orange">
+              <small class="slider-text-numbering">03.</small>
+              <h2 style="padding: 20px 0px 64px 16px; font-size: 40px;" class="mega-heading">WMR App</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container mp-25 tm-only">
+        <div class="row">
+          <div class="col-md-4 col-sm-3">
+            <a href="Shrtsurl.html">
+              <img class="blogs-img wh-445" data-cursor-text="View Case" src="Assets/Images/Home/dashboard.webp"
+                alt="playpal" />
+            </a>
+            <div class="color-orange">
+              <small class="slider-text-numbering">04.</small>
+              <h2 style="padding: 20px 0px 64px 16px; font-size: 40px;" class=" mega-heading"> shrturls Dashboard</h2>
+            </div>
+          </div>
+          <div class="col-md-4 coll-sm-3">
+            <a href="Pdf Scanner.html">
+              <img class="blogs-img wh-445" data-cursor-text="View Case" src="Assets/Images/Home/Pdf reader.jpg"
+                alt="vmd" />
+            </a>
+            <div class="color-orange">
+              <small class="slider-text-numbering">05.</small>
+              <h2 style="padding: 20px 0px 64px 16px; font-size: 40px;" class=" mega-heading">Pdf Reader</h2>
+            </div>
+          </div>
+          <!-- <div class="col-md-4 col-sm-3">
+                    <img class="blogs-img wh-445" src="./Assets/Images/Home/slider-image.png" alt="">
+                    <div class="color-orange">
+                        <small class="slider-text-numbering">06.</small>
+                        <h2 class="slider-heading mega-heading">Aesop</h2>
+                    </div>
+                </div> -->
+        </div>
+      </div>
+      <!-- <div class="container mp-25 tm-only">
+            <div class="row">
+                <div class="col-md-4 col-sm-3">
+                    <img class="blogs-img wh-445" src="./Assets/Images/Home/slider-image.png" alt="">
+                    <div class="color-orange">
+                        <small class="slider-text-numbering">07.</small>
+                        <h2 class="slider-heading mega-heading">Colle House</h2>
+                    </div>
+                </div>
+                <div class="col-md-4 coll-sm-3">
+                    <img class="blogs-img wh-445" src="./Assets/Images/Home/slider-image.png" alt="">
+                    <div class="color-orange">
+                        <small class="slider-text-numbering">08.</small>
+                        <h2 class="slider-heading mega-heading">Phaedra</h2>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-3">
+                    <img class="blogs-img wh-445" src="./Assets/Images/Home/slider-image.png" alt="">
+                    <div class="color-orange">
+                        <small class="slider-text-numbering">09.</small>
+                        <h2 class="slider-heading mega-heading">Mitzie</h2>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+      <!-- Slider section end-->
+    </section>
+  </div>
+
+  <!-- Start of pricing mechanism
+  <section id="pricing-mechanism-section" class="pricing-mechanism-section">
+    <div class="container mp-25">
+      <h2 class="h2">Pricing Mechanism</h2>
+      <div class="row centerlised pt-4">
+        <div class="col-md-6"> -->
+  <!-- <div class="main">
+                        <svg viewBox="0 0 630 352" xmlns="http://www.w3.org/2000/svg">
+                            <mask id="m1">
+                                <image class="m" xlink:href="https://assets.codepen.io/721952/liquidMask1.svg" y="-1"
+                                    width="630" height="10650" />
+                            </mask>
+                            <mask id="m2">
+                                <image class="m" class="maskImg"
+                                    xlink:href="https://assets.codepen.io/721952/liquidMask1.svg" y="-1" width="630"
+                                    height="10750" />
+                            </mask>
+                            <image mask="url(#m2)" xlink:href="./Assets/Images/Home/pricing-dedicated-teams.png"
+                                width="630" height="410" />
+                            <g mask="url(#m1)">
+                                <image class="frog" xlink:href="./Assets/Images/Home/pricing-dedicated-teams.png"
+                                    width="630" height="410" />
+                            </g>
+                        </svg>
+                    </div> -->
+
+  <!-- <img class="pricing-image" src="Assets/Images/Home/pricing-dedicated-teams.webp" alt="pricing team" />
+        </div>
+        <div class="col-md-5 offset-1">
+          <h3 class="h3 pt-lg-0">Dedicated Teams</h3>
+          <p class="pricing-paragraph">
+            Get your projects fast-tracked with Hyfatech best technical and
+            management talent along with collaborative engagement.
+          </p>
+          <a href="dedicated-teams.html">
+            <button type="submit" class="theme-button bg-orange">
+              Learn More
+            </button>
+          </a>
+        </div>
+      </div>
+      <div class="row pricing-styling-row2">
+        <div class="col-md-6">
+          <h3 class="h3">Fixed Price</h3>
+          <p class="pricing-paragraph">
+            Guaranteeing optimized performance of your projects. Assuring
+            on-time and on-budget results.
+          </p>
+
+          <a href="contact-us.html">
+            <button type="button" class="theme-button bg-orange">
+              Get a Quote
+            </button>
+          </a>
+        </div>
+        <div class="col-md-6 pt-4"> -->
+  <!-- <div class="main">
+                        <svg viewBox="0 0 630 352" xmlns="http://www.w3.org/2000/svg">
+                            <mask id="m1">
+                                <image class="m" xlink:href="https://assets.codepen.io/721952/liquidMask1.svg" y="-1"
+                                    width="630" height="10750" />
+                            </mask>
+                            <mask id="m2">
+                                <image class="m" class="maskImg"
+                                    xlink:href="https://assets.codepen.io/721952/liquidMask1.svg" y="-1" width="630"
+                                    height="10750" />
+                            </mask>
+                            <image mask="url(#m2)" xlink:href="./Assets/Images/Home/pricing-fixed-price.png" width="630"
+                                height="410" />
+                            <g mask="url(#m1)">
+                                <image class="frog" xlink:href="./Assets/Images/Home/pricing-fixed-price.png"
+                                    width="630" height="410" />
+                            </g>
+                        </svg>
+                    </div> -->
+  <!-- <img class="pricing-image" src="Assets/Images/Home/pricing-fixed-price.webp" alt="price fixed" />
+        </div>
+      </div>
+    </div>
+  </section> -->
+  <!--our latest reads blogs section is starting here-->
+  <!-- <section id="blogs" class="blogs">
+        <div class="container mp-25">
+            <h2 class="h2">Our latest reads</h2>
+            <div class="row blogs-row">
+                <div class="col-md-4 col-sm-3">
+                    <img class="blogs-img" data-cursor-text="View Case" data-cursor="-color-green"
+                        src="./Assets/Images/Home/blogs-user-experience.png" alt="">
+                    <h6 class="blogs-heading">User Experience</h6>
+                    <p class="blogs-p">Branding, Product- & Packaging Design that relives the old pharmacy flair.</p>
+                </div>
+                <div class="col-md-4 coll-sm-3">
+                    <img class="blogs-img" data-cursor-text="View Case" data-cursor="-color-accent-red"
+                        src="./Assets/Images/Home/blogs-packaging-design.png" alt="">
+                    <h6 class="blogs-heading">Packaging Design</h6>
+                    <p class="blogs-p">Branding, Product- & Packaging Design for an upcoming beauty & health company.
+                    </p>
+                </div>
+                <div class="col-md-4 col-sm-3">
+                    <img class="blogs-img" data-cursor-text="View Case" data-cursor="-color-accent-lilac"
+                        src="./Assets/Images/Home/blogs-development.png" alt="">
+                    <h6 class="blogs-heading">Full Stack Development</h6>
+                    <p class="blogs-p">Responsive digital magazine design for the world leading fashion magazine.</p>
+                </div>
+            </div>
+        </div>
+    </section> -->
+  <!--blogs section end-->
+  <!--footer section start-->
+  <!--<script-->
+  <!--  language="javascript"-->
+  <!--  type="text/javascript"-->
+  <!--  src="./footer.txt"-->
+
+  <footer id="footer">
+    <div class="footer-section bg-black">
+      <div class="container mp-25 mac-only">
+        <h3 class="h3 color-white p-l-4">Have an idea?</h3>
+      </div>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-10 offset-md-3 form-section offset">
+            <form action="https://formsubmit.co/uiwithadnan@gmail.com" method="post">
+              <div class="group">
+                <input type="text" autocomplete="off" id="contact_name" name="text" required />
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label>Name</label>
+              </div>
+              <div class="group">
+                <input type="text" autocomplete="off" required id="contact_email" name="email" />
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label>Email</label>
+              </div>
+              <!-- <div class="group">
+                <input type="number" autocomplete="off" required />
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label>Phone</label>
+              </div> -->
+              <div class="group">
+                <input type="text" autocomplete="off" required name="message" id="contact_message" />
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label>Description</label>
+              </div>
+              <div>
+                <button type="submit" class="theme-button" style="border: none">
+                  Submit
+                </button>
+              </div>
+            </form>
+            <div id="toast" class="hidden">
+              <div class="toast-message">Form submitted successfully!</div>
+            </div>
+            <div class="row footer-bottom-section">
+              <div class="row" style="display: flex; flex-wrap: nowrap">
+                <div class="w-auto">
+                  <p class="footer-bottom-text">Email.</p>
+                  <p class="footer-bottom-text">Social.</p>
+                  <p class="footer-bottom-text">Address.</p>
+                </div>
+                <div class="col-md-6 w-auto footer-bottom-column2">
+                  <a href="mailto:uiwithadnan@gmail.com" target="_blank">
+                    <p class="footer-bottom-text opacity">
+                      uiwithadnan@gmail.com
+                    </p>
+                  </a>
+                  <div class="row">
+                    <div class="col-md-1 footer-bottom-text opacity w-auto">
+                      <a href="https://www.linkedin.com/in/hafixadnan/" target="_blank">
+                        <img style="border-radius: 3px" src="Assets/Images/Home/linkedin.webp" width="18px" alt="" />
+                      </a>
+                    </div>
+                    <!-- <div class="col-md-1 footer-bottom-text opacity w-auto">
+                        <a
+                          href="https://dribbble.com/search/hyfatech"
+                          target="_blank"
+                        >
+                          <img src="./Assets/Images/Home/globe.svg" alt="" />
+                        </a>
+                      </div>
+                      <div class="col-md-1 footer-bottom-text opacity w-auto">
+                        <a
+                          href="https://www.facebook.com/HYFATech-103042001731395/"
+                          target="_blank"
+                        >
+                          <img src="./Assets/Images/Home/facebook.svg" alt="" />
+                        </a>
+                      </div>
+                      <div class="col-md-1 footer-bottom-text opacity w-auto">
+                        <a
+                          href="https://www.instagram.com/hyfatech/?hl=en"
+                          target="_blank"
+                        >
+                          <img
+                            src="./Assets/Images/Home/instagram.svg"
+                            alt=""
+                          />
+                        </a>
+                      </div> -->
+                  </div>
+                  <p class="footer-bottom-text opacity">
+                    605-D, Canal View Housing Society, Canal View, Lahore, Punjab
+                  </p>
+                </div>
+              </div>
+              <div class="col-md-3 pl-0">
+                <p class="footer-bottom-text">
+                  Copyrights@
+                  <span id="copyright-year"></span>
+                  Hafiz Muhammad Adnan
+                </p>
+                <p class="footer-bottom-text opacity" style="max-width: 255px"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!--footer section end-->
 </body>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.14/angular.min.js"></script> -->
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.0/TweenMax.min.js"></script> -->
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/CSSRulePlugin.min.js"></script>
+<script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/16327/CustomWiggle3.min.js"></script>
+<script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/16327/DrawSVGPlugin3.min.js"></script>
+<script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/16327/DrawSVGPlugin3.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/Draggable.min.js"></script> -->
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/EaselPlugin.min.js"></script> -->
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/EasePack.min.js"></script> -->
+<!-- <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/16327/GSDevTools3.min.js"></script>
+<script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/16327/InertiaPlugin.min.js"></script>
+<script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/16327/MorphSVGPlugin3.min.js"></script>
+<script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/16327/MotionPathHelper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/MotionPathPlugin.min.js"></script>
+<script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/16327/Physics2DPlugin3.min.js"></script>
+<script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/16327/PhysicsPropsPlugin3.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/PixiPlugin.min.js"></script>
+<script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/16327/ScrambleTextPlugin3.min.js"></script> -->
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/ScrollToPlugin.min.js"></script> -->
+<!-- scroll trigger and split text are for header text animations -->
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/TextPlugin.min.js"></script> -->
+
+<script src="Javascript/GSAP/minified/gsap.min.js"></script>
+<script src="Javascript/GSAP/minified/ScrollTrigger.min.js"></script>
+<script src="Javascript/GSAP/minified/SplitText.min.js"></script>
+<script src="Javascript/bootstrapJS/jquery-3.6.0.slim.min.js"></script>
+<script src="Javascript/bootstrapJS/popper.min.js"></script>
+<script src="Javascript/bootstrapJS/bootstrap.min.js"></script>
+<script src="Javascript/app.js"></script>
+<script src="Javascript/car-mate.js"></script>
+<script src="Javascript/index.js"></script>
+
+
+<script src="Javascript/jquery-3.6.0.min.js"></script>
+<!-- <script src="./Javascript/animation.js"></script> -->
+<script src="Javascript/cursor.js"></script>
+
+<!-- Mirrored from www.hyfatech.com/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 11 Jan 2024 19:06:44 GMT -->
+
 </html>
